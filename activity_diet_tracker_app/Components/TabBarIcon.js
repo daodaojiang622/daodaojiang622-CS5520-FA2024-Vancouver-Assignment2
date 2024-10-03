@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';
 
 const TabBarIcon = ({ routeName }) => {
@@ -12,6 +12,9 @@ const TabBarIcon = ({ routeName }) => {
   } else if (routeName === 'Diet') {
     IconComponent = MaterialIcons;
     iconName = 'fastfood';
+  } else if (routeName === 'Settings') {
+    IconComponent = Ionicons;
+    iconName = 'settings-sharp';
   }
 
   return <IconComponent name={iconName} style={styles.icon} />;
