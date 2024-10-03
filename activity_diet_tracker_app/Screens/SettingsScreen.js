@@ -5,7 +5,6 @@ export default function ActivitiesScreen() {
   return (
     <View style={styles.container}>
       <FlatList
-        data={activities}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
       />

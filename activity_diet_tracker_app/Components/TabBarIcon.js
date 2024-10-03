@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';
+import Colors from '../Utils/Colors';
 
 const TabBarIcon = ({ routeName }) => {
   let iconName;
@@ -23,7 +24,7 @@ const TabBarIcon = ({ routeName }) => {
 const styles = StyleSheet.create({
   icon: {
     fontSize: 24,
-    color: 'black',
+    color: Colors.icon,
   },
 });
 
