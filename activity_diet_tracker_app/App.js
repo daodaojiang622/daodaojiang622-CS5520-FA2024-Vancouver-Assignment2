@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import ActivitiesScreen from './Screens/ActivitiesScreen';
 import DietScreen from './Screens/DietScreen';
+import TabBarIcon from './Components/TabBarIcon'; // Import the reusable component
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -14,18 +13,7 @@ function BottomTabs() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
-          let iconName;
-          let IconComponent;
-          if (route.name === 'Activities') {
-            IconComponent = FontAwesome5;
-            iconName = 'running';
-          } else if (route.name === 'Diet') {
-            IconComponent = MaterialIcons;
-            iconName = 'fastfood';
-          }
-          return <IconComponent name={iconName} style={styles.icon} />;
-        },
+        tabBarIcon: () => <TabBarIcon routeName={route.name} />, // Use the reusable component
       })}
     >
       <Tab.Screen name="Activities" component={ActivitiesScreen} />
@@ -43,10 +31,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-export const styles = StyleSheet.create({
-  icon: {
-    fontSize: 24,
-    color: 'black',
-  },
-});
