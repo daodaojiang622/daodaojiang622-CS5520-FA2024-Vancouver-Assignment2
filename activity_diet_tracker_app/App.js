@@ -4,7 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ActivitiesScreen from './Screens/ActivitiesScreen';
 import DietScreen from './Screens/DietScreen';
-import TabBarIcon from './Components/TabBarIcon'; // Import the reusable component
+import SettingsScreen from './Screens/SettingsScreen';
+import TabBarIcon from './Components/TabBarIcon';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -18,6 +19,7 @@ function BottomTabs() {
     >
       <Tab.Screen name="Activities" component={ActivitiesScreen} />
       <Tab.Screen name="Diet" component={DietScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
 }
