@@ -1,9 +1,10 @@
 export const Colors = {
-    primary: '#f59e42',
+    primary: '#00008B',
 
     // icon color
     icon: 'black',
+    inactiveIcon: 'gray',
 
     // background color
-    background: '#f5ebe1',
+    background: 'white',
 };

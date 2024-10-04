@@ -7,7 +7,7 @@ import ActivitiesScreen from './Screens/ActivitiesScreen';
 import DietScreen from './Screens/DietScreen';
 import SettingsScreen from './Screens/SettingsScreen';
 import TabBarIcon from './Components/TabBarIcon';
-import Colors from './Utils/Colors';
+import { background, icon, inactiveIcon } from './Utils/Colors';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,13 +46,13 @@ function BottomTabs() {
       screenOptions={({ route }) => ({
         tabBarIcon: () => <TabBarIcon routeName={route.name} />,
         tabBarStyle: {
-          backgroundColor: Colors.background,
+          backgroundColor: background,
         },
         headerStyle: {
-          backgroundColor: Colors.background,
+          backgroundColor: background,
         },
-        tabBarActiveTintColor: 'black',
-        tabBarInactiveTintColor: '#ccc',
+        tabBarActiveTintColor: icon,
+        tabBarInactiveTintColor: inactiveIcon,
       })}
     >
       <Tab.Screen name="Activities" component={ActivitiesScreenWrapper} />
@@ -69,9 +69,9 @@ export default function App() {
         initialRouteName="BottomTabs"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#cf6d38', // Set the header background color here
+            backgroundColor: background, // Set the header background color here
           },
-          headerTintColor: '#fff', // Set the header text color
+          headerTintColor: inactiveIcon, // Set the header text color
         }}
       >
         <Stack.Screen name="BottomTabs" component={BottomTabs} options={{ headerShown: false }} />
@@ -83,6 +83,6 @@ export default function App() {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    backgroundColor: Colors.background, // Set the background color to #bf6332
+    backgroundColor: background, // Set the background color to #bf6332
   },
 });
