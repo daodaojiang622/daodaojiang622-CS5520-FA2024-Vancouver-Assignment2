@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import Button from '../Components/Button'; 
 
 const activities = [
   { id: '1', name: 'Running' },
@@ -9,10 +8,6 @@ const activities = [
 ];
 
 export default function ActivitiesScreen() {
-  const handleAddPress = () => {
-    // Placeholder function for button press
-    console.log('Add button pressed');
-  };
 
   return (
     <View style={styles.container}>

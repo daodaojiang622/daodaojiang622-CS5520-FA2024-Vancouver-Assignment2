@@ -9,6 +9,7 @@ import SettingsScreen from './Screens/SettingsScreen';
 import TabBarIcon from './Components/TabBarIcon';
 import { background, icon, inactiveIcon } from './Utils/Colors';
 import Button from './Components/Button';
+import AddAnActivityScreen from './Screens/AddAnActivityScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -17,7 +18,11 @@ function ScreenWrapper({ children }) {
   return <View style={styles.screenContainer}>{children}</View>;
 }
 
-function ActivitiesScreenWrapper() {
+function ActivitiesScreenWrapper({ navigation }) {
+  const handleAddPressActScreen = () => {
+    navigation.navigate('AddAnActivity');
+  };
+
   return (
     <ScreenWrapper>
       <ActivitiesScreen />
@@ -59,20 +64,16 @@ function BottomTabs() {
       <Tab.Screen 
         name="Activities" 
         component={ActivitiesScreenWrapper} 
-        options={{ 
+        options={({ navigation }) => ({ 
           headerRight: () => (
-            <Button title="Add" onPress={handleAddPress} />
+            <Button title="Add" onPress={() => navigation.navigate('AddAnActivity')} />
           ),
-        }}  
+        })}  
       />
       <Tab.Screen name="Diet" component={DietScreenWrapper} />
       <Tab.Screen name="Settings" component={SettingsScreenWrapper} />
     </Tab.Navigator>
   );
-}
-
-function handleAddPress() {
-  console.log('Add button pressed');
 }
 
 export default function App() {
@@ -88,12 +89,19 @@ export default function App() {
         }}
       >
         <Stack.Screen 
-        name="BottomTabs" 
-        component={BottomTabs} 
-        options={{ 
-          headerShown: false 
-        }}
-         />
+          name="BottomTabs" 
+          component={BottomTabs} 
+          options={{ 
+            headerShown: false 
+          }}
+        />
+        <Stack.Screen 
+          name="AddAnActivity" 
+          component={AddAnActivityScreen} 
+          options={{ 
+            title: 'Add An Activity' 
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
