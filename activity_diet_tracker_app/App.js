@@ -8,6 +8,7 @@ import DietScreen from './Screens/DietScreen';
 import SettingsScreen from './Screens/SettingsScreen';
 import TabBarIcon from './Components/TabBarIcon';
 import { background, icon, inactiveIcon } from './Utils/Colors';
+import Button from './Components/Button';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -55,11 +56,23 @@ function BottomTabs() {
         tabBarInactiveTintColor: inactiveIcon,
       })}
     >
-      <Tab.Screen name="Activities" component={ActivitiesScreenWrapper} />
+      <Tab.Screen 
+        name="Activities" 
+        component={ActivitiesScreenWrapper} 
+        options={{ 
+          headerRight: () => (
+            <Button title="Add" onPress={handleAddPress} />
+          ),
+        }}  
+      />
       <Tab.Screen name="Diet" component={DietScreenWrapper} />
       <Tab.Screen name="Settings" component={SettingsScreenWrapper} />
     </Tab.Navigator>
   );
+}
+
+function handleAddPress() {
+  console.log('Add button pressed');
 }
 
 export default function App() {
@@ -74,7 +87,13 @@ export default function App() {
           headerTintColor: inactiveIcon, // Set the header text color
         }}
       >
-        <Stack.Screen name="BottomTabs" component={BottomTabs} options={{ headerShown: false }} />
+        <Stack.Screen 
+        name="BottomTabs" 
+        component={BottomTabs} 
+        options={{ 
+          headerShown: false 
+        }}
+         />
       </Stack.Navigator>
     </NavigationContainer>
   );
