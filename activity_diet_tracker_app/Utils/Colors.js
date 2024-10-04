@@ -6,5 +6,5 @@ export const Colors = {
     inactiveIcon: 'gray',
 
     // background color
-    background: 'white',
+    background: 'blue',
 };
