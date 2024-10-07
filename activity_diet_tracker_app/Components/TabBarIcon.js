@@ -3,7 +3,7 @@ import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';
 import icon from '../Utils/Colors';
 
-const TabBarIcon = ({ routeName }) => {
+const TabBarIcon = ({ routeName, iconStyle }) => {
   let iconName;
   let IconComponent;
 
@@ -18,7 +18,7 @@ const TabBarIcon = ({ routeName }) => {
     iconName = 'settings-sharp';
   }
 
-  return <IconComponent name={iconName} style={styles.icon} />;
+  return <IconComponent name={iconName} style={[styles.icon, iconStyle]} />;
 };
 
 const styles = StyleSheet.create({

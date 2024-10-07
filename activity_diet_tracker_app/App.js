@@ -50,7 +50,13 @@ function BottomTabs() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: () => <TabBarIcon routeName={route.name} />,
+        tabBarIcon: ({ focused }) => (
+        <TabBarIcon 
+          routeName={route.name}
+          iconStyle={{ color: focused ? 'orange' : 'white' }}
+          />
+      
+        ),
         tabBarStyle: {
           backgroundColor: '#3f3e9e',
         },
@@ -85,7 +91,7 @@ export default function App() {
           headerStyle: {
             backgroundColor: '#3f3e9e', // Set the header background color here
           },
-          headerTintColor: inactiveIcon, // Set the header text color
+          headerTintColor: 'white', // Set the header text color
         }}
       >
         <Stack.Screen 
