@@ -58,10 +58,10 @@ function BottomTabs() {
       
         ),
         tabBarStyle: {
-          backgroundColor: '#3f3e9e',
+          backgroundColor: '#454580',
         },
         headerStyle: {
-          backgroundColor: "#3f3e9e",
+          backgroundColor: "#454580",
         },
         tabBarActiveTintColor: 'orange',
         tabBarInactiveTintColor: 'white',
@@ -102,9 +102,8 @@ export default function App() {
         initialRouteName="BottomTabs"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#3f3e9e', 
+            backgroundColor: '#454580', 
           },
-          headerTintColor: 'white', 
         }}
       >
         <Stack.Screen 
@@ -130,7 +129,7 @@ export default function App() {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    backgroundColor: background, // Set the background color to #bf6332
+    backgroundColor: '#a6a6bf'
   },
   addButtonText: {
     color: 'orange',

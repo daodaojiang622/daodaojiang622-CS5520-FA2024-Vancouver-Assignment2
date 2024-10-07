@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 const activities = [
-  { id: '1', name: 'Running', date: '2023-10-01', duration: '30 mins' },
+  { id: '1', name: 'Running', date: 'Mon Oct 01 2023', duration: '30 mins' },
   { id: '2', name: 'Swimming', date: '2023-10-02', duration: '45 mins' },
   { id: '3', name: 'Cycling', date: '2023-10-03', duration: '60 mins' },
 ];
@@ -10,8 +10,12 @@ const activities = [
 const ActivityItem = ({ name, date, duration }) => (
   <View style={styles.activityContainer}>
     <Text style={styles.name}>{name}</Text>
-    <Text style={styles.date}>{date}</Text>
-    <Text style={styles.duration}>{duration}</Text>
+    <View style={styles.dateContainer}>
+      <Text style={styles.date}>{date}</Text>
+    </View>  
+    <View style={styles.durationContainer}>
+      <Text style={styles.duration}>{duration}</Text>
+    </View>
   </View>
 );
 
@@ -32,7 +36,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 15,
-    backgroundColor: '#3f3e9e',
+    backgroundColor: '#454580',
     borderRadius: 5,
     width: '85%',
     alignSelf: 'center',
@@ -42,6 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'left',
     color: 'white',
+    fontWeight: 'bold',
   },
   date: {
     flex: 1,
@@ -50,6 +55,21 @@ const styles = StyleSheet.create({
   duration: {
     flex: 1,
     textAlign: 'right',
+  },
+  dateContainer: {
+    backgroundColor: 'white',
+    borderRadius: 5,
+    padding: 5,
+    width: 'auto',
+    marginHorizontal: 5,
+    paddingHorizontal: 10,
+  },
+  durationContainer: {
+    backgroundColor: 'white',
+    borderRadius: 5,
+    padding: 5,
+    width: 'auto',
+    paddingHorizontal: 10,
   },
 });
 
