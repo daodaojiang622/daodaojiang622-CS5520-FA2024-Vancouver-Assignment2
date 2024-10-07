@@ -10,6 +10,8 @@ import TabBarIcon from './Components/TabBarIcon';
 import { background, icon, inactiveIcon } from './Utils/Colors';
 import Button from './Components/Button';
 import AddAnActivityScreen from './Screens/AddAnActivityScreen';
+import ItemsList from './Components/ItemsList';
+import { DataProvider } from './Components/DataContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,19 +25,11 @@ function ActivitiesScreenWrapper({ navigation }) {
     navigation.navigate('AddAnActivity');
   };
 
-  return (
-    <ScreenWrapper>
-      <ActivitiesScreen />
-    </ScreenWrapper>
-  );
+  return <ItemsList type='activity'/>;
 }
 
 function DietScreenWrapper() {
-  return (
-    <ScreenWrapper>
-      <DietScreen />
-    </ScreenWrapper>
-  );
+  return <ItemsList type='diet'/>;
 }
 
 function SettingsScreenWrapper() {
@@ -48,50 +42,58 @@ function SettingsScreenWrapper() {
 
 function BottomTabs() {
   return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused }) => (
-        <TabBarIcon 
-          routeName={route.name}
-          iconStyle={{ color: focused ? 'orange' : 'white' }}
-          />
-      
-        ),
-        tabBarStyle: {
-          backgroundColor: '#454580',
-        },
-        headerStyle: {
-          backgroundColor: "#454580",
-        },
-        tabBarActiveTintColor: 'orange',
-        tabBarInactiveTintColor: 'white',
-      })}
-    >
-      <Tab.Screen 
-        name="Activities" 
-        component={ActivitiesScreenWrapper} 
-        options={({ navigation }) => ({ 
-          headerRight: () => (
-            <Button title="Add" textStyle={styles.addButtonText} onPress={() => navigation.navigate('AddAnActivity')} />
+    <DataProvider>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused }) => (
+          <TabBarIcon 
+            routeName={route.name}
+            iconStyle={{ color: focused ? 'orange' : 'white' }}
+            />
+        
           ),
-          headerTintColor: 'white',
-        })}  
-      />
-      <Tab.Screen 
-        name="Diet" 
-        component={DietScreenWrapper} 
-        options={{
-          headerTintColor: 'white',
-        }}
+          tabBarStyle: {
+            backgroundColor: '#454580',
+          },
+          headerStyle: {
+            backgroundColor: "#454580",
+          },
+          tabBarActiveTintColor: 'orange',
+          tabBarInactiveTintColor: 'white',
+        })}
+      >
+        <Tab.Screen 
+          name="Activities" 
+          component={ActivitiesScreenWrapper} 
+          options={({ navigation }) => ({ 
+            headerRight: () => (
+              <Button 
+                title="Add" 
+                textStyle={styles.addButtonText} 
+                onPress={() => navigation.navigate('AddAnActivity')} 
+              />
+            ),
+            headerTintColor: 'white',
+            backgroundColor: '#a6a6bf',
+          })}  
         />
-      <Tab.Screen 
-        name="Settings" 
-        component={SettingsScreenWrapper} 
-        options={{
-          headerTintColor: 'white',
-        }}
-      />
-    </Tab.Navigator>
+        <Tab.Screen 
+          name="Diet" 
+          component={DietScreenWrapper} 
+          options={{
+            headerTintColor: 'white',
+          }}
+          />
+        <Tab.Screen 
+          name="Settings" 
+          component={SettingsScreenWrapper} 
+          options={{
+            headerTintColor: 'white',
+            backgroundColor: '#a6a6bf',
+          }}
+        />
+      </Tab.Navigator>
+    </DataProvider>
   );
 }
 
@@ -119,6 +121,7 @@ export default function App() {
           options={{ 
             title: 'Add An Activity', 
             headerTintColor: 'white',
+            backgroundColor: '#a6a6bf',
           }}
         />
       </Stack.Navigator>
@@ -129,7 +132,7 @@ export default function App() {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    backgroundColor: '#a6a6bf'
+    zIndex: 1,
   },
   addButtonText: {
     color: 'orange',

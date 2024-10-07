@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { DataContext } from './DataContext';
 
-const ItemsList = ({ data }) => {
+const ItemsList = ({ type }) => {
+  const data = useContext(DataContext);
+
+    // Filter data based on the type prop
+    const filteredData = data.filter(item => {
+      if (type === 'activity') {
+        return item.id.startsWith('a');
+      } else if (type === 'diet') {
+        return item.id.startsWith('d');
+      }
+      return false;
+    });
+
   const renderItem = ({ item }) => (
     <View style={styles.activityContainer}>
       <Text style={styles.name}>{item.name}</Text>
-      <View style={styles.dateContainer}>
-        <Text style={styles.date}>{item.date}</Text>
+      <View style={styles.dataContainer}>
+        <Text style={styles.data}>{item.date}</Text>
       </View>
-      <View style={styles.otherDataContainer}>
-        <Text style={styles.otherData}>{item.otherData}</Text>
+      <View style={styles.dataContainer}>
+        <Text style={styles.data}>{item.otherData}</Text>
       </View>
     </View>
   );
 
   return (
     <FlatList
-      data={data}
+      data={filteredData}
       keyExtractor={(item) => item.id}
       renderItem={renderItem}
     />
@@ -40,27 +53,16 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
-  date: {
+  data: {
     flex: 1,
     textAlign: 'center',
   },
-  otherData: {
-    flex: 1,
-    textAlign: 'right',
-  },
-  dateContainer: {
+  dataContainer: {
     backgroundColor: 'white',
     borderRadius: 5,
     padding: 5,
     width: 'auto',
     marginHorizontal: 5,
-    paddingHorizontal: 10,
-  },
-  otherDataContainer: {
-    backgroundColor: 'white',
-    borderRadius: 5,
-    padding: 5,
-    width: 'auto',
     paddingHorizontal: 10,
   },
 });
