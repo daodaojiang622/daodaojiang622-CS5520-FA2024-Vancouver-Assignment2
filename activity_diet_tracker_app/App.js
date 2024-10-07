@@ -72,12 +72,25 @@ function BottomTabs() {
         component={ActivitiesScreenWrapper} 
         options={({ navigation }) => ({ 
           headerRight: () => (
-            <Button title="Add" onPress={() => navigation.navigate('AddAnActivity')} />
+            <Button title="Add" textStyle={styles.addButtonText} onPress={() => navigation.navigate('AddAnActivity')} />
           ),
+          headerTintColor: 'white',
         })}  
       />
-      <Tab.Screen name="Diet" component={DietScreenWrapper} />
-      <Tab.Screen name="Settings" component={SettingsScreenWrapper} />
+      <Tab.Screen 
+        name="Diet" 
+        component={DietScreenWrapper} 
+        options={{
+          headerTintColor: 'white',
+        }}
+        />
+      <Tab.Screen 
+        name="Settings" 
+        component={SettingsScreenWrapper} 
+        options={{
+          headerTintColor: 'white',
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -89,9 +102,9 @@ export default function App() {
         initialRouteName="BottomTabs"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#3f3e9e', // Set the header background color here
+            backgroundColor: '#3f3e9e', 
           },
-          headerTintColor: 'white', // Set the header text color
+          headerTintColor: 'white', 
         }}
       >
         <Stack.Screen 
@@ -105,7 +118,8 @@ export default function App() {
           name="AddAnActivity" 
           component={AddAnActivityScreen} 
           options={{ 
-            title: 'Add An Activity' 
+            title: 'Add An Activity', 
+            headerTintColor: 'white',
           }}
         />
       </Stack.Navigator>
@@ -117,5 +131,11 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     backgroundColor: background, // Set the background color to #bf6332
+  },
+  addButtonText: {
+    color: 'orange',
+    fontSize: 16,
+    marginRight: 25,
+    fontWeight: 'bold',
   },
 });
