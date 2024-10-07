@@ -24,7 +24,7 @@ const TabBarIcon = ({ routeName }) => {
 const styles = StyleSheet.create({
   icon: {
     fontSize: 24,
-    color: icon,
+    color: 'white',
   },
 });
 

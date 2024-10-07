@@ -1,38 +1,56 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 const activities = [
-  { id: '1', name: 'Running' },
-  { id: '2', name: 'Swimming' },
-  { id: '3', name: 'Cycling' },
+  { id: '1', name: 'Running', date: '2023-10-01', duration: '30 mins' },
+  { id: '2', name: 'Swimming', date: '2023-10-02', duration: '45 mins' },
+  { id: '3', name: 'Cycling', date: '2023-10-03', duration: '60 mins' },
 ];
 
-export default function ActivitiesScreen() {
+const ActivityItem = ({ name, date, duration }) => (
+  <View style={styles.activityContainer}>
+    <Text style={styles.name}>{name}</Text>
+    <Text style={styles.date}>{date}</Text>
+    <Text style={styles.duration}>{duration}</Text>
+  </View>
+);
 
+const ActivitiesScreen = () => {
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={activities}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
-      />
-    </View>
+    <FlatList
+      data={activities}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => (
+        <ActivityItem name={item.name} date={item.date} duration={item.duration} />
+      )}
+    />
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
+  activityContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 15,
+    backgroundColor: '#3f3e9e',
+    borderRadius: 5,
+    width: '85%',
+    alignSelf: 'center',
+    marginTop: 15,
+  },
+  name: {
     flex: 1,
-    padding: 20,
+    textAlign: 'left',
+    color: 'white',
   },
-  addButton: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
+  date: {
+    flex: 1,
+    textAlign: 'center',
   },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
+  duration: {
+    flex: 1,
+    textAlign: 'right',
   },
 });
+
+export default ActivitiesScreen;

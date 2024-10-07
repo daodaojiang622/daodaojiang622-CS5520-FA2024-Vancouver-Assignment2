@@ -52,13 +52,13 @@ function BottomTabs() {
       screenOptions={({ route }) => ({
         tabBarIcon: () => <TabBarIcon routeName={route.name} />,
         tabBarStyle: {
-          backgroundColor: background,
+          backgroundColor: '#3f3e9e',
         },
         headerStyle: {
-          backgroundColor: background,
+          backgroundColor: "#3f3e9e",
         },
-        tabBarActiveTintColor: icon,
-        tabBarInactiveTintColor: inactiveIcon,
+        tabBarActiveTintColor: 'orange',
+        tabBarInactiveTintColor: 'white',
       })}
     >
       <Tab.Screen 
@@ -83,7 +83,7 @@ export default function App() {
         initialRouteName="BottomTabs"
         screenOptions={{
           headerStyle: {
-            backgroundColor: background, // Set the header background color here
+            backgroundColor: '#3f3e9e', // Set the header background color here
           },
           headerTintColor: inactiveIcon, // Set the header text color
         }}
