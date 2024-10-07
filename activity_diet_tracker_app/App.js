@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ActivitiesScreen from './Screens/ActivitiesScreen';
-import DietScreen from './Screens/DietScreen';
 import SettingsScreen from './Screens/SettingsScreen';
 import TabBarIcon from './Components/TabBarIcon';
-import { background, icon, inactiveIcon } from './Utils/Colors';
 import Button from './Components/Button';
 import AddAnActivityScreen from './Screens/AddAnActivityScreen';
 import ItemsList from './Components/ItemsList';
 import { DataProvider } from './Components/DataContext';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -67,11 +65,13 @@ function BottomTabs() {
           component={ActivitiesScreenWrapper} 
           options={({ navigation }) => ({ 
             headerRight: () => (
-              <Button 
-                title="Add" 
-                textStyle={styles.addButtonText} 
-                onPress={() => navigation.navigate('AddAnActivity')} 
-              />
+              <TouchableOpacity 
+                onPress={() => navigation.navigate('AddAnActivity')}>
+                <MaterialIcons 
+                  name="add-circle-outline" 
+                  style={styles.addButton}
+                />
+              </TouchableOpacity>
             ),
             headerTintColor: 'white',
             backgroundColor: '#a6a6bf',
@@ -139,5 +139,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginRight: 25,
     fontWeight: 'bold',
+  },
+  addButton: {
+    color: 'white',
+    fontSize: 25,
+    marginRight: 35,
   },
 });
