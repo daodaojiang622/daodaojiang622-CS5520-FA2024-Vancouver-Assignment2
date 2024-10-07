@@ -1,21 +1,16 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
+import ItemsList from '../Components/ItemsList';
 
 const dietEntries = [
-  { id: '1', name: 'Breakfast: Oatmeal' },
-  { id: '2', name: 'Lunch: Salad' },
-  { id: '3', name: 'Dinner: Grilled Chicken' },
+  { id: '1', name: 'Breakfast', date: 'Mon Oct 01 2023', otherData: '200' },
+  { id: '2', name: 'Lunch', date: 'Mon Oct 08 2023', otherData: '300' },
+  { id: '3', name: 'Dinner', date: 'Mon Oct 15 2023', otherData: '400' },
 ];
 
 export default function DietScreen() {
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={dietEntries}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
-      />
-    </View>
+    <ItemsList data={dietEntries} />
   );
 }
 
