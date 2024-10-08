@@ -1,15 +1,16 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
-import InputField from '../Components/InputField';
+import Button from '../Components/Button';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useNavigation } from '@react-navigation/native';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showDate, setShowDate] = useState(false);
+  const navigation = useNavigation();
   
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -24,7 +25,6 @@ export default function AddActivityScreen() {
 
   const onChangeDate = (event, selectedDate) => {
     setDate(selectedDate); // Update the date state
-    setShowDate(true); // Show the selected date
   };
 
   const toggleDatePicker = () => {
@@ -66,7 +66,6 @@ export default function AddActivityScreen() {
           placeholder="Select date"
           onChangeText={setDate}
           onPress={toggleDatePicker}
-          editable={true}
         />
       {showDatePicker && (
         <DateTimePicker
@@ -76,6 +75,21 @@ export default function AddActivityScreen() {
           onChange={onChangeDate}
         />
       )}
+
+      <View style={styles.buttonContainer}>
+        <Button 
+          title="Save" 
+          onPress={() => { /* Save action */ }}
+          buttonStyle={styles.addActivityButton}
+          textStyle={styles.addActivityButtonText}
+        />
+        <Button 
+          title="Cancel" 
+          onPress={() => navigation.goBack()}
+          buttonStyle={styles.addActivityButton}
+          textStyle={styles.addActivityButtonText} />
+      </View>
+
     </View>
   );
 }
@@ -106,5 +120,22 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginBottom: 20,
     width: '100%',
+  },
+  addActivityButton: {
+    backgroundColor: 'transparent',
+    padding: 10,
+    borderRadius: 5,
+    marginRight: 25,
+    width: '35%',
+  },
+  addActivityButtonText: {
+    color: '#454580',
+    fontSize: 16,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 300,
+    marginLeft: 30,
   },
 });
