@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import InputField from '../Components/InputField';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-export default function AddAnActivityScreen() {
+export default function AddActivityScreen() {
   const [activityType, setActivityType] = useState(null);
   const [open, setOpen] = useState(false);
   const [duration, setDuration] = useState('');
@@ -23,9 +24,13 @@ export default function AddAnActivityScreen() {
 
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
-    setShowDatePicker(false);
+    setShowDatePicker(Platform.OS === 'ios');
     setDate(currentDate);
   };
+
+  const showDatepicker = () => {
+    setShowDatePicker(true);
+  }
 
   return (
     <View style={styles.container}>
@@ -52,6 +57,22 @@ export default function AddAnActivityScreen() {
       />
 
         <Text style={styles.label}>Date *</Text>
+        <TouchableOpacity onPress={showDatepicker}>
+        <TextInput
+          style={styles.input}
+          value={`${date.toLocaleDateString('en-US', { weekday: 'short' })} ${date.toLocaleDateString('en-US', { month: 'short' })} ${date.toLocaleDateString('en-US', { day: '2-digit' })} ${date.getFullYear()}`}
+          editable={false}
+          placeholder="Select date"
+        />
+      </TouchableOpacity>
+      {showDatePicker && (
+        <DateTimePicker
+          value={date}
+          mode="date"
+          display="default"
+          onChange={onChangeDate}
+        />
+      )}
     </View>
   );
 }

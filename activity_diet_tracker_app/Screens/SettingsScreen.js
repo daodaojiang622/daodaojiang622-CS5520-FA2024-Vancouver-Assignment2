@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
+import Button from '../Components/Button';
 
 export default function ActivitiesScreen() {
   return (
     <View style={styles.container}>
-      <FlatList
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
+      <Button
+        title="Toggle Theme"
+        textStyle={styles.themeButtonText}
+        buttonStyle={styles.themeButton}
       />
     </View>
   );
@@ -17,9 +19,10 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
+  themeButtonText: {
+    color: 'black',
+  },
+  themeButton: {
+    marginTop: 250,
   },
 });

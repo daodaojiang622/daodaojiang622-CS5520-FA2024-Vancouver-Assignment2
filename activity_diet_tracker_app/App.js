@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, ThemeProvider } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SettingsScreen from './Screens/SettingsScreen';
 import TabBarIcon from './Components/TabBarIcon';
 import Button from './Components/Button';
-import AddAnActivityScreen from './Screens/AddAnActivityScreen';
+import AddActivityScreen from './Screens/AddActivityScreen';
 import ItemsList from './Components/ItemsList';
 import { DataProvider } from './Components/DataContext';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -20,7 +20,7 @@ function ScreenWrapper({ children }) {
 
 function ActivitiesScreenWrapper({ navigation }) {
   const handleAddPressActScreen = () => {
-    navigation.navigate('AddAnActivity');
+    navigation.navigate('AddActivity');
   };
 
   return <ItemsList type='activity'/>;
@@ -66,7 +66,7 @@ function BottomTabs() {
           options={({ navigation }) => ({ 
             headerRight: () => (
               <TouchableOpacity 
-                onPress={() => navigation.navigate('AddAnActivity')}>
+                onPress={() => navigation.navigate('AddActivity')}>
                 <MaterialIcons 
                   name="add-circle-outline" 
                   style={styles.addButton}
@@ -99,33 +99,32 @@ function BottomTabs() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="BottomTabs"
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: '#454580', 
-          },
-        }}
-      >
-        <Stack.Screen 
-          name="BottomTabs" 
-          component={BottomTabs} 
-          options={{ 
-            headerShown: false 
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: '#454580', 
+            },
           }}
-        />
-        <Stack.Screen 
-          name="AddAnActivity" 
-          component={AddAnActivityScreen} 
-          options={{ 
-            title: 'Add An Activity', 
-            headerTintColor: 'white',
-            backgroundColor: '#a6a6bf',
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+        >
+          <Stack.Screen 
+            name="Back" 
+            component={BottomTabs} 
+            options={{ 
+              headerShown: false 
+            }}
+          />
+          <Stack.Screen 
+            name="AddActivity" 
+            component={AddActivityScreen} 
+            options={{ 
+              title: 'Add An Activity', 
+              headerTintColor: 'white',
+              backgroundColor: '#a6a6bf',
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 
