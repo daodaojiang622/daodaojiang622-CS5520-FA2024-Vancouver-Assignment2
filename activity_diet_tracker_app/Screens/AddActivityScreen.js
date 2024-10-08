@@ -5,7 +5,6 @@ import InputField from '../Components/InputField';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function AddActivityScreen() {
-  const [activityType, setActivityType] = useState(null);
   const [open, setOpen] = useState(false);
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState(new Date());
@@ -22,9 +21,9 @@ export default function AddActivityScreen() {
     { label: 'Hiking', value: 'hiking' },
   ]);
 
-  const onDateChange = (event, selectedDate) => {
+  const onChangeDate = (event, selectedDate) => {
     const currentDate = selectedDate || date;
-    setShowDatePicker(Platform.OS === 'ios');
+    setShowDatePicker(true);
     setDate(currentDate);
   };
 
@@ -63,13 +62,14 @@ export default function AddActivityScreen() {
           value={`${date.toLocaleDateString('en-US', { weekday: 'short' })} ${date.toLocaleDateString('en-US', { month: 'short' })} ${date.toLocaleDateString('en-US', { day: '2-digit' })} ${date.getFullYear()}`}
           editable={false}
           placeholder="Select date"
+          onChangeText={setDate}
         />
       </TouchableOpacity>
       {showDatePicker && (
         <DateTimePicker
           value={date}
           mode="date"
-          display="default"
+          display="inline"
           onChange={onChangeDate}
         />
       )}
