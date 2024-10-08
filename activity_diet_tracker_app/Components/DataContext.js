@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 export const DataContext = createContext();
 
@@ -12,6 +12,7 @@ export const DataProvider = ({ children }) => {
     { id: 'd2', name: 'Lunch', date: 'Mon Oct 08 2023', otherData: '300' },
     { id: 'd3', name: 'Dinner', date: 'Mon Oct 15 2023', otherData: '400' },
   ]);
+
 
   return (
     <View style={styles.dataProviderContainer}>

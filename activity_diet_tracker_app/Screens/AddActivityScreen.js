@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
 import React, { useState } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Button from '../Components/Button';
@@ -33,6 +33,24 @@ export default function AddActivityScreen() {
     }
     setShowDatePicker(!showDatePicker);
   }
+
+  const validateAndSave = () => {
+    if (!value) {
+      Alert.alert('Validation Error', 'Please select an activity.');
+      return;
+    }
+    if (!duration || isNaN(duration) || parseFloat(duration) <= 0) {
+      Alert.alert('Validation Error', 'Please enter a valid duration (positive number).');
+      return;
+    }
+    if (!date) {
+      Alert.alert('Validation Error', 'Please select a date.');
+      return;
+    }
+  
+    navigation.goBack();
+  
+  };
 
   return (
     <View style={styles.container}>
@@ -79,7 +97,7 @@ export default function AddActivityScreen() {
       <View style={styles.buttonContainer}>
         <Button 
           title="Save" 
-          onPress={() => { /* Save action */ }}
+          onPress={() => validateAndSave()}
           buttonStyle={styles.addActivityButton}
           textStyle={styles.addActivityButtonText}
         />
