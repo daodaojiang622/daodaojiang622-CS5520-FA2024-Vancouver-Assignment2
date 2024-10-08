@@ -7,21 +7,11 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
-  const [duration, setDuration] = useState('');
+  const [description, setDescription] = useState('');
+  const [calories, setCalories] = useState('');
   const [date, setDate] = useState(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const navigation = useNavigation();
-  
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    { label: 'Walking', value: 'walking' },
-    { label: 'Running', value: 'running' },
-    { label: 'Swimming', value: 'swimming' },
-    { label: 'Weight Training', value: 'Weight Training' },
-    { label: 'Yoga', value: 'yoga' },
-    { label: 'Cycling', value: 'cycling' },
-    { label: 'Hiking', value: 'hiking' },
-  ]);
 
 
   const onChangeDate = (event, selectedDate) => {
@@ -36,45 +26,46 @@ export default function AddActivityScreen() {
   }
 
   const validateAndSave = () => {
-    if (!value) {
-      Alert.alert('Validation Error', 'Please select an activity.');
+    if (!description) {
+      Alert.alert('Validation Error', 'Please enter a description.');
       return;
     }
-    if (!duration || isNaN(duration) || parseFloat(duration) <= 0) {
-      Alert.alert('Validation Error', 'Please enter a valid duration (positive number).');
-      return;
-    }
+    if (!calories || isNaN(calories) || parseFloat(calories) < 0) {
+        Alert.alert('Validation Error', 'Please enter a valid calories (positive number or 0).');
+        return;
+      }
     if (!date) {
       Alert.alert('Validation Error', 'Please select a date.');
       return;
     }
   
+    newEntry = { 
+        id: 'd4', 
+        name: description, 
+        date: date, 
+        otherData: calories
+    };
+    console.log('Description:', newEntry);
+
     navigation.goBack();
   
   };
 
   return (
     <View style={styles.container}>
-        <Text style={styles.label}>Activity *</Text>
-        <DropDownPicker
-            open={open}
-            value={value}
-            items={items}
-            setOpen={setOpen}
-            setValue={setValue}
-            setItems={setItems}
-            placeholder="Select an activity"
-            style={styles.dropdown}
-            dropDownContainerStyle={styles.dropdownContainer}
-            maxHeight={400}
-        />
-      <Text style={styles.label}>Duration (min) *</Text>
+        <Text style={styles.label}>Description *</Text>
+        <TextInput
+        style={styles.input}
+        keyboardType="numeric"
+        value={description}
+        onChangeText={setDescription}
+      />
+      <Text style={styles.label}>Calories *</Text>
       <TextInput
         style={styles.input}
         keyboardType="numeric"
-        value={duration}
-        onChangeText={setDuration}
-        placeholder="Enter duration"
+        value={calories}
+        onChangeText={setCalories}
       />
 
         <Text style={styles.label}>Date *</Text>

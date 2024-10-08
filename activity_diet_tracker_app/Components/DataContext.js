@@ -14,6 +14,8 @@ export const DataProvider = ({ children }) => {
     { id: 'd1', name: 'Breakfast', date: 'Mon Oct 01 2023', otherData: '200' },
     { id: 'd2', name: 'Lunch', date: 'Mon Oct 08 2023', otherData: '300' },
     { id: 'd3', name: 'Dinner', date: 'Mon Oct 15 2023', otherData: '400' },
+    { id: 'd4', name: 'Dinner', date: 'Mon Oct 15 2023', otherData: '800' },
+    { id: 'd5', name: 'Dinner', date: 'Mon Oct 15 2023', otherData: '801' },
   ]);
 
 

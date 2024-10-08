@@ -5,11 +5,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SettingsScreen from './Screens/SettingsScreen';
 import TabBarIcon from './Components/TabBarIcon';
-import Button from './Components/Button';
 import AddActivityScreen from './Screens/AddActivityScreen';
 import ItemsList from './Components/ItemsList';
 import { DataProvider } from './Components/DataContext';
 import { MaterialIcons } from '@expo/vector-icons';
+import AddDietScreen from './Screens/AddDietScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -80,9 +80,19 @@ function BottomTabs() {
         <Tab.Screen 
           name="Diet" 
           component={DietScreenWrapper} 
-          options={{
+          options={({ navigation }) => ({ 
+            headerRight: () => (
+              <TouchableOpacity 
+                onPress={() => navigation.navigate('AddDiet')}>
+                <MaterialIcons 
+                  name="add-circle-outline" 
+                  style={styles.addButton}
+                />
+              </TouchableOpacity>
+            ),
             headerTintColor: 'white',
-          }}
+            backgroundColor: '#a6a6bf',
+          })}  
           />
         <Tab.Screen 
           name="Settings" 
@@ -119,6 +129,15 @@ export default function App() {
             component={AddActivityScreen} 
             options={{ 
               title: 'Add An Activity', 
+              headerTintColor: 'white',
+              backgroundColor: '#a6a6bf',
+            }}
+          />
+          <Stack.Screen 
+            name="AddDiet" 
+            component={AddDietScreen} 
+            options={{ 
+              title: 'Add A Diet', 
               headerTintColor: 'white',
               backgroundColor: '#a6a6bf',
             }}

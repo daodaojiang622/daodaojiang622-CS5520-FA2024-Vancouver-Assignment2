@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { DataContext } from './DataContext';
-import { Ionicons } from '@expo/vector-icons';
 
 const ItemsList = ({ type }) => {
   const data = useContext(DataContext);
@@ -21,9 +20,11 @@ const ItemsList = ({ type }) => {
       <Text style={styles.name}>{item.name}</Text>
 
       {(item.name === 'Running' || item.name === 'Weight Training') && parseInt(item.otherData) > 60 && (
-          //<Ionicons name="alert-circle-outline" size={24} color="orange" />
           <Text style={styles.special}>{'!'}</Text>
         )}
+      {item.id.startsWith('d') && parseInt(item.otherData) > 800 && (
+          <Text style={styles.special}>{'!'}</Text>
+      )}
 
       <View style={styles.dataContainer}>
         <Text style={styles.data}>{item.date}</Text>
