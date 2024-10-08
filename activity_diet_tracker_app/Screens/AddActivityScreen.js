@@ -7,7 +7,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
   const [duration, setDuration] = useState('');
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
   
   const [value, setValue] = useState(null);
@@ -59,15 +59,16 @@ export default function AddActivityScreen() {
         <TouchableOpacity onPress={showDatepicker}>
         <TextInput
           style={styles.input}
-          value={`${date.toLocaleDateString('en-US', { weekday: 'short' })} ${date.toLocaleDateString('en-US', { month: 'short' })} ${date.toLocaleDateString('en-US', { day: '2-digit' })} ${date.getFullYear()}`}
+          value={date ? `${date.toLocaleDateString('en-US', { weekday: 'short' })} ${date.toLocaleDateString('en-US', { month: 'short' })} ${date.toLocaleDateString('en-US', { day: '2-digit' })} ${date.getFullYear()}` : ''}
           editable={false}
           placeholder="Select date"
           onChangeText={setDate}
+          onPress={showDatepicker}
         />
       </TouchableOpacity>
       {showDatePicker && (
         <DateTimePicker
-          value={date}
+          value={date || new Date()}
           mode="date"
           display="inline"
           onChange={onChangeDate}
