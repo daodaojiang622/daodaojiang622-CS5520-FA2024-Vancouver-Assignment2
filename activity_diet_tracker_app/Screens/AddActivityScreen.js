@@ -9,6 +9,7 @@ export default function AddActivityScreen() {
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showDate, setShowDate] = useState(false);
   
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -22,13 +23,15 @@ export default function AddActivityScreen() {
   ]);
 
   const onChangeDate = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShowDatePicker(true);
-    setDate(currentDate);
+    setDate(selectedDate); // Update the date state
+    setShowDate(true); // Show the selected date
   };
 
-  const showDatepicker = () => {
-    setShowDatePicker(true);
+  const toggleDatePicker = () => {
+    if (!showDatePicker && !date) {
+      setDate(new Date()); // Set to current date if no date is selected
+    }
+    setShowDatePicker(!showDatePicker);
   }
 
   return (
@@ -56,16 +59,15 @@ export default function AddActivityScreen() {
       />
 
         <Text style={styles.label}>Date *</Text>
-        <TouchableOpacity onPress={showDatepicker}>
         <TextInput
           style={styles.input}
           value={date ? `${date.toLocaleDateString('en-US', { weekday: 'short' })} ${date.toLocaleDateString('en-US', { month: 'short' })} ${date.toLocaleDateString('en-US', { day: '2-digit' })} ${date.getFullYear()}` : ''}
           editable={false}
           placeholder="Select date"
           onChangeText={setDate}
-          onPress={showDatepicker}
+          onPress={toggleDatePicker}
+          editable={true}
         />
-      </TouchableOpacity>
       {showDatePicker && (
         <DateTimePicker
           value={date || new Date()}
