@@ -21,7 +21,8 @@ const ItemsList = ({ type }) => {
       <Text style={styles.name}>{item.name}</Text>
 
       {(item.name === 'Running' || item.name === 'Weight Training') && parseInt(item.otherData) > 60 && (
-          <Ionicons name="alert-circle-outline" size={24} color="orange" />
+          //<Ionicons name="alert-circle-outline" size={24} color="orange" />
+          <Text style={styles.special}>{'!'}</Text>
         )}
 
       <View style={styles.dataContainer}>
@@ -70,6 +71,12 @@ const styles = StyleSheet.create({
     width: 'auto',
     marginHorizontal: 5,
     paddingHorizontal: 10,
+  },
+  special: {
+    color: 'orange',
+    fontWeight: 'bold',
+    fontSize: 24,
+    marginRight: 5,
   },
 });
 
