@@ -23,6 +23,7 @@ export default function AddActivityScreen() {
     { label: 'Hiking', value: 'hiking' },
   ]);
 
+
   const onChangeDate = (event, selectedDate) => {
     setDate(selectedDate); // Update the date state
   };
@@ -65,8 +66,9 @@ export default function AddActivityScreen() {
             placeholder="Select an activity"
             style={styles.dropdown}
             dropDownContainerStyle={styles.dropdownContainer}
+            maxHeight={400}
         />
-
+      <View style={[styles.inputSection, { zIndex: open ? 1 : 2000 }]}></View>
       <Text style={styles.label}>Duration (min) *</Text>
       <TextInput
         style={styles.input}
@@ -93,6 +95,7 @@ export default function AddActivityScreen() {
           onChange={onChangeDate}
         />
       )}
+      
 
       <View style={styles.buttonContainer}>
         <Button 
