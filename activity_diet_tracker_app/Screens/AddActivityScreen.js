@@ -17,7 +17,7 @@ export default function AddActivityScreen() {
     { label: 'Walking', value: 'walking' },
     { label: 'Running', value: 'running' },
     { label: 'Swimming', value: 'swimming' },
-    { label: 'Weights', value: 'weights' },
+    { label: 'Weight Training', value: 'Weight Training' },
     { label: 'Yoga', value: 'yoga' },
     { label: 'Cycling', value: 'cycling' },
     { label: 'Hiking', value: 'hiking' },
