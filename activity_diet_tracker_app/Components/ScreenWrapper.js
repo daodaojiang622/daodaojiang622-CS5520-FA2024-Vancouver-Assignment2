@@ -15,6 +15,6 @@ export default function ScreenWrapper({ children }) {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    zIndex: 1,
+    flexGrow: 1,
   },
 });

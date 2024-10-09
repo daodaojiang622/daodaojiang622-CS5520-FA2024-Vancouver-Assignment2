@@ -6,6 +6,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import Colors from '../Utils/Colors';
 import { ThemeContext } from '../Components/ThemeContext';
+import { DataContext } from '../Components/DataContext';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -14,6 +15,7 @@ export default function AddActivityScreen() {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
+  const { data, updateData } = useContext(DataContext);
   
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -39,6 +41,7 @@ export default function AddActivityScreen() {
   }
 
   const validateAndSave = () => {
+
     if (!value) {
       Alert.alert('Validation Error', 'Please select an activity.');
       return;
@@ -51,7 +54,20 @@ export default function AddActivityScreen() {
       Alert.alert('Validation Error', 'Please select a date.');
       return;
     }
+    // Create the new activity object
+    const newActivity = {
+      id: `a${Date.now()}`, // Generate a unique ID
+      name: value,
+      date: date.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' +
+            date.toLocaleDateString('en-US', { month: 'short' }) + ' ' +
+            date.toLocaleDateString('en-US', { day: '2-digit' }) + ' ' +
+            date.getFullYear(),
+      otherData: `${duration} mins`
+    };
   
+    // Update the data state with the new activity
+    updateData(newActivity);
+
     navigation.goBack();
   
   };

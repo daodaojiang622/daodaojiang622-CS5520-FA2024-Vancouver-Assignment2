@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { DataContext } from './DataContext';
 import Colors from '../Utils/Colors';
@@ -6,7 +6,7 @@ import { ThemeContext } from './ThemeContext';
 import SpecialIndicator from './SpecialIndicator';
 
 const ItemsList = ({ type }) => {
-  const data = useContext(DataContext);
+  const { data } = useContext(DataContext);
   const { theme } = useContext(ThemeContext);
 
     // Filter data based on the type prop
@@ -19,7 +19,10 @@ const ItemsList = ({ type }) => {
       return false;
     });
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item }) => {
+    console.log('Rendering item:', item.name);
+
+    return (
     <View style={[styles.activityContainer, {backgroundColor: theme.headerColor}]}>
       <Text style={styles.name}>{item.name}</Text>
 
@@ -37,7 +40,7 @@ const ItemsList = ({ type }) => {
         <Text style={styles.data}>{item.otherData}</Text>
       </View>
     </View>
-  );
+  );} 
 
   return (
     <FlatList
@@ -66,7 +69,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   data: {
-    flex: 1,
     textAlign: 'center',
   },
   dataContainer: {

@@ -8,7 +8,6 @@ import TabBarIcon from './Components/TabBarIcon';
 import AddActivityScreen from './Screens/AddActivityScreen';
 import ItemsList from './Components/ItemsList';
 import { DataProvider } from './Components/DataContext';
-import { MaterialIcons } from '@expo/vector-icons';
 import AddDietScreen from './Screens/AddDietScreen';
 import Colors from './Utils/Colors';
 import { ThemeProvider, ThemeContext } from './Components/ThemeContext';
@@ -47,7 +46,6 @@ function BottomTabs() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <DataProvider>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused }) => (
@@ -85,7 +83,7 @@ function BottomTabs() {
           options={({ navigation }) => ({ 
             headerRight: () => (
               <Button
-              onPress={() => navigation.navigate('AddActivity')}
+              onPress={() => navigation.navigate('AddDiet')}
               imageSource={addIcon}
             />
             ),
@@ -100,7 +98,6 @@ function BottomTabs() {
           }}
         />
       </Tab.Navigator>
-    </DataProvider>
   );
 }
 export default function App() {
@@ -115,45 +112,40 @@ function AppContent() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: theme.headerColor,
-          },
-        }}
-      >
-        <Stack.Screen 
-          name="Back" 
-          component={BottomTabs} 
-          options={{ 
-            headerShown: false 
+    <DataProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: theme.headerColor,
+            },
           }}
-        />
-        <Stack.Screen 
-          name="AddActivity" 
-          component={AddActivityScreen} 
-          options={{ 
-            title: 'Add An Activity', 
-            headerTintColor: Colors.tertiary,
-          }}
-        />
-        <Stack.Screen 
-          name="AddDiet" 
-          component={AddDietScreen} 
-          options={{ 
-            title: 'Add A Diet', 
-            headerTintColor: Colors.tertiary,
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+        >
+          <Stack.Screen 
+            name="Back" 
+            component={BottomTabs} 
+            options={{ 
+              headerShown: false 
+            }}
+          />
+          <Stack.Screen 
+            name="AddActivity" 
+            component={AddActivityScreen} 
+            options={{ 
+              title: 'Add An Activity', 
+              headerTintColor: Colors.tertiary,
+            }}
+          />
+          <Stack.Screen 
+            name="AddDiet" 
+            component={AddDietScreen} 
+            options={{ 
+              title: 'Add A Diet', 
+              headerTintColor: Colors.tertiary,
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </DataProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-    zIndex: 1,
-  },
-});
