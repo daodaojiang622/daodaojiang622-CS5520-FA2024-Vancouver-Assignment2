@@ -30,5 +30,6 @@ const styles = StyleSheet.create({
   },
   themeButton: {
     marginTop: 250,
+    marginLeft: 30,
   },
 });
