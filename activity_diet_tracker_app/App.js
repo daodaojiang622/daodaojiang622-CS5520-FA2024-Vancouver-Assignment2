@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { NavigationContainer, ThemeProvider } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SettingsScreen from './Screens/SettingsScreen';
@@ -11,6 +11,7 @@ import { DataProvider } from './Components/DataContext';
 import { MaterialIcons } from '@expo/vector-icons';
 import AddDietScreen from './Screens/AddDietScreen';
 import Colors from './Utils/Colors';
+import { ThemeProvider } from './Components/ThemeContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -110,6 +111,7 @@ function BottomTabs() {
 
 export default function App() {
   return (
+    <ThemeProvider>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
@@ -145,6 +147,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </ThemeProvider>
   );
 }
 

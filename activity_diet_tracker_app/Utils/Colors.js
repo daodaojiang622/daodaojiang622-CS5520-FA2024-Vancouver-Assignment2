@@ -3,13 +3,10 @@ const Colors = {
     secondary: 'orange',
     tertiary: 'white',
 
+    background: '#c0c4d1',
 
-    // icon color
-    icon: 'black',
-    inactiveIcon: 'gray',
-
-    // background color
-    background: '#a6a6bf',
+    toggleThemeHeader: '#405c47',
+    toggleThemeBackground: '#b4bfb7',
 
     noColor: 'transparent',
 

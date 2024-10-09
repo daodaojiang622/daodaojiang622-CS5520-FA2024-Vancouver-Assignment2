@@ -1,25 +1,22 @@
 import React, { createContext, useState } from 'react';
+import Colors from '../Utils/Colors';
 
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isPinkTheme, setIsPinkTheme] = useState(false);
 
   const toggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
+    setIsPinkTheme((prevTheme) => !prevTheme);
   };
 
   const theme = {
-    isDarkTheme,
-    colors: {
-      background: isDarkTheme ? '#333' : '#fff',
-      text: isDarkTheme ? '#fff' : '#000',
-    },
-    toggleTheme,
+    backgroundColor: isPinkTheme ? Colors.background : Colors.toggleThemeBackground,
+    textColor: isPinkTheme ? Colors.primary: Colors.toggleThemeHeader,
   };
 
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
