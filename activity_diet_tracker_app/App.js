@@ -12,35 +12,34 @@ import { MaterialIcons } from '@expo/vector-icons';
 import AddDietScreen from './Screens/AddDietScreen';
 import Colors from './Utils/Colors';
 import { ThemeProvider, ThemeContext } from './Components/ThemeContext';
+import ScreenWrapper from './Components/ScreenWrapper';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function ActivitiesScreenWrapper() {
-  const { theme } = useContext(ThemeContext);
 
   return (
-    <View style={[styles.screenContainer, {backgroundColor: theme.backgroundColor}]}>
+    <ScreenWrapper>
       <ItemsList type='activity'/>
-    </View>
+    </ScreenWrapper>
   );
 }
 
 function DietScreenWrapper() {
-  const { theme } = useContext(ThemeContext);
   
   return (
-    <View style={[styles.screenContainer, {backgroundColor: theme.backgroundColor}]}>
+    <ScreenWrapper>
       <ItemsList type='diet'/>
-    </View>
+    </ScreenWrapper>
   );
 }
 
 function SettingsScreenWrapper() {
   return (
-    <View style={styles.screenContainer}>
+    <ScreenWrapper>
       <SettingsScreen />
-    </View>
+    </ScreenWrapper>
   );
 }
 
