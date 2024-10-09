@@ -4,6 +4,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Button from '../Components/Button';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
+import Colors from '../Utils/Colors';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -125,31 +126,30 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   dropdownContainer: {
-    backgroundColor: '#fafafa',
+    backgroundColor: Colors.dropDownColor,
   },
   label: {
         fontSize: 16,
         marginBottom: 8,
-        color: 'blue',
+        color: Colors.primary,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#95a1c7',
+    borderColor: Colors.inputBorder,
     padding: 8,
     borderRadius: 4,
-    borderWidth: 2,
     marginBottom: 20,
     width: '100%',
   },
   addActivityButton: {
-    backgroundColor: 'transparent',
+    backgroundColor: Colors.noColor,
     padding: 10,
     borderRadius: 5,
     marginRight: 25,
     width: '35%',
   },
   addActivityButtonText: {
-    color: '#454580',
+    color: Colors.primary,
     fontSize: 16,
   },
   buttonContainer: {

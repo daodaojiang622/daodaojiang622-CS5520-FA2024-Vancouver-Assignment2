@@ -20,17 +20,8 @@ export const DataProvider = ({ children }) => {
 
 
   return (
-    <View style={styles.dataProviderContainer}>
-        <DataContext.Provider value={data}>
-        {children}
-        </DataContext.Provider>
-    </View>
+    <DataContext.Provider value={data}>
+    {children}
+    </DataContext.Provider>
   );
 };
-
-const styles = StyleSheet.create({
-    dataProviderContainer: {
-        flex: 1,
-        backgroundColor: '#a6a6bf',
-    },
-});

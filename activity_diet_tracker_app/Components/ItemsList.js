@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { DataContext } from './DataContext';
+import Colors from '../Utils/Colors';
 
 const ItemsList = ({ type }) => {
   const data = useContext(DataContext);
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 15,
-    backgroundColor: '#454580',
+    backgroundColor: Colors.primary,
     borderRadius: 5,
     width: '85%',
     alignSelf: 'center',
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
   name: {
     flex: 1,
     textAlign: 'left',
-    color: 'white',
+    color: Colors.tertiary,
     fontWeight: 'bold',
   },
   data: {
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   dataContainer: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.tertiary,
     borderRadius: 5,
     padding: 5,
     width: 'auto',
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   special: {
-    color: 'orange',
+    color: Colors.secondary,
     fontWeight: 'bold',
     fontSize: 24,
     marginRight: 5,

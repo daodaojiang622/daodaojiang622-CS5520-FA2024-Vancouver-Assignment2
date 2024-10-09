@@ -10,6 +10,7 @@ import ItemsList from './Components/ItemsList';
 import { DataProvider } from './Components/DataContext';
 import { MaterialIcons } from '@expo/vector-icons';
 import AddDietScreen from './Screens/AddDietScreen';
+import Colors from './Utils/Colors';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,18 +47,18 @@ function BottomTabs() {
           tabBarIcon: ({ focused }) => (
           <TabBarIcon 
             routeName={route.name}
-            iconStyle={{ color: focused ? 'orange' : 'white' }}
+            iconStyle={{ color: focused ? Colors.secondary : Colors.tertiary}}
             />
         
           ),
           tabBarStyle: {
-            backgroundColor: '#454580',
+            backgroundColor: Colors.primary,
           },
           headerStyle: {
-            backgroundColor: "#454580",
+            backgroundColor: Colors.primary,
           },
-          tabBarActiveTintColor: 'orange',
-          tabBarInactiveTintColor: 'white',
+          tabBarActiveTintColor: Colors.secondary,
+          tabBarInactiveTintColor: Colors.tertiary,
         })}
       >
         <Tab.Screen 
@@ -73,7 +74,7 @@ function BottomTabs() {
                 />
               </TouchableOpacity>
             ),
-            headerTintColor: 'white',
+            headerTintColor: Colors.tertiary,
             backgroundColor: '#a6a6bf',
           })}  
         />
@@ -90,7 +91,7 @@ function BottomTabs() {
                 />
               </TouchableOpacity>
             ),
-            headerTintColor: 'white',
+            headerTintColor: Colors.tertiary,
             backgroundColor: '#a6a6bf',
           })}  
           />
@@ -98,7 +99,7 @@ function BottomTabs() {
           name="Settings" 
           component={SettingsScreenWrapper} 
           options={{
-            headerTintColor: 'white',
+            headerTintColor: Colors.tertiary,
             backgroundColor: '#a6a6bf',
           }}
         />
@@ -113,7 +114,7 @@ export default function App() {
         <Stack.Navigator
           screenOptions={{
             headerStyle: {
-              backgroundColor: '#454580', 
+              backgroundColor: Colors.primary, 
             },
           }}
         >
@@ -129,7 +130,7 @@ export default function App() {
             component={AddActivityScreen} 
             options={{ 
               title: 'Add An Activity', 
-              headerTintColor: 'white',
+              headerTintColor: Colors.tertiary,
               backgroundColor: '#a6a6bf',
             }}
           />
@@ -138,7 +139,7 @@ export default function App() {
             component={AddDietScreen} 
             options={{ 
               title: 'Add A Diet', 
-              headerTintColor: 'white',
+              headerTintColor: Colors.tertiary,
               backgroundColor: '#a6a6bf',
             }}
           />
@@ -153,13 +154,13 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   addButtonText: {
-    color: 'orange',
+    color: Colors.secondary,
     fontSize: 16,
     marginRight: 25,
     fontWeight: 'bold',
   },
   addButton: {
-    color: 'white',
+    color: Colors.tertiary,
     fontSize: 25,
     marginRight: 35,
   },
