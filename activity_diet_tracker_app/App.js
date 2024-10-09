@@ -103,7 +103,9 @@ function BottomTabs() {
 export default function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+      <DataProvider>
+        <AppContent />
+      </DataProvider>
     </ThemeProvider>
   );
 }
@@ -112,7 +114,6 @@ function AppContent() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <DataProvider>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
@@ -146,6 +147,5 @@ function AppContent() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </DataProvider>
   );
 }

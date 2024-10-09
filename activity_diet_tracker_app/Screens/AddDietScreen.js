@@ -5,6 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import Colors from '../Utils/Colors';
 import { ThemeContext } from '../Components/ThemeContext';
+import { DataContext } from '../Components/DataContext';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -14,6 +15,7 @@ export default function AddActivityScreen() {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
+  const { data, updateData } = useContext(DataContext);
 
   const onChangeDate = (event, selectedDate) => {
     setDate(selectedDate); // Update the date state
@@ -40,14 +42,19 @@ export default function AddActivityScreen() {
       return;
     }
   
-    newEntry = { 
-        id: 'd4', 
+    const newActivity = { 
+        id: `d${Date.now()}`, 
         name: description, 
-        date: date, 
+        date: 
+          date.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' +
+          date.toLocaleDateString('en-US', { month: 'short' }) + ' ' +
+          date.toLocaleDateString('en-US', { day: '2-digit' }) + ' ' +
+          date.getFullYear(),
         otherData: calories
     };
-    console.log('Description:', newEntry);
 
+    updateData(newActivity);
+    
     navigation.goBack();
   
   };

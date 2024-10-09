@@ -9,6 +9,7 @@ const ItemsList = ({ type }) => {
   const { data } = useContext(DataContext);
   const { theme } = useContext(ThemeContext);
 
+  console.log('ItemsList data:', data);
     // Filter data based on the type prop
     const filteredData = data.filter(item => {
       if (type === 'activity') {
@@ -20,7 +21,6 @@ const ItemsList = ({ type }) => {
     });
 
   const renderItem = ({ item }) => {
-    console.log('Rendering item:', item.name);
 
     return (
     <View style={[styles.activityContainer, {backgroundColor: theme.headerColor}]}>
