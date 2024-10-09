@@ -3,10 +3,10 @@ const Colors = {
     secondary: 'orange',
     tertiary: 'white',
 
-    background: '#c0c4d1',
+    background: '#edeffa',
 
     toggleThemeHeader: '#405c47',
-    toggleThemeBackground: '#d3dbd5',
+    toggleThemeBackground: '#e9f5ec',
 
     noColor: 'transparent',
 

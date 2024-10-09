@@ -17,11 +17,23 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function ActivitiesScreenWrapper() {
-  return <ItemsList type='activity'/>;
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <View style={[styles.screenContainer, {backgroundColor: theme.backgroundColor}]}>
+      <ItemsList type='activity'/>
+    </View>
+  );
 }
 
 function DietScreenWrapper() {
-  return <ItemsList type='diet'/>;
+  const { theme } = useContext(ThemeContext);
+  
+  return (
+    <View style={[styles.screenContainer, {backgroundColor: theme.backgroundColor}]}>
+      <ItemsList type='diet'/>
+    </View>
+  );
 }
 
 function SettingsScreenWrapper() {
