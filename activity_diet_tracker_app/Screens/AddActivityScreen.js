@@ -1,10 +1,11 @@
 import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Button from '../Components/Button';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import Colors from '../Utils/Colors';
+import { ThemeContext } from '../Components/ThemeContext';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -12,6 +13,7 @@ export default function AddActivityScreen() {
   const [date, setDate] = useState(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const navigation = useNavigation();
+  const { theme } = useContext(ThemeContext);
   
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -56,7 +58,7 @@ export default function AddActivityScreen() {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.label}>Activity *</Text>
+        <Text style={[styles.label, { color: theme.headerColor}]}>Activity *</Text>
         <DropDownPicker
             open={open}
             value={value}
@@ -69,7 +71,7 @@ export default function AddActivityScreen() {
             dropDownContainerStyle={styles.dropdownContainer}
             maxHeight={400}
         />
-      <Text style={styles.label}>Duration (min) *</Text>
+      <Text style={[styles.label, { color: theme.headerColor}]}>Duration (min) *</Text>
       <TextInput
         style={styles.input}
         keyboardType="numeric"
@@ -78,7 +80,7 @@ export default function AddActivityScreen() {
         placeholder="Enter duration"
       />
 
-        <Text style={styles.label}>Date *</Text>
+        <Text style={[styles.label, { color: theme.headerColor}]}>Date *</Text>
         <TextInput
           style={styles.input}
           value={date ? `${date.toLocaleDateString('en-US', { weekday: 'short' })} ${date.toLocaleDateString('en-US', { month: 'short' })} ${date.toLocaleDateString('en-US', { day: '2-digit' })} ${date.getFullYear()}` : ''}
@@ -102,13 +104,13 @@ export default function AddActivityScreen() {
           title="Save" 
           onPress={() => validateAndSave()}
           buttonStyle={styles.addActivityButton}
-          textStyle={styles.addActivityButtonText}
+          textStyle={[styles.addActivityButtonText, { color: theme.headerColor}]}
         />
         <Button 
           title="Cancel" 
           onPress={() => navigation.goBack()}
           buttonStyle={styles.addActivityButton}
-          textStyle={styles.addActivityButtonText} />
+          textStyle={[styles.addActivityButtonText, { color: theme.headerColor}]} />
       </View>
 
     </View>

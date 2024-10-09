@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from '../Components/Button';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import Colors from '../Utils/Colors';
+import { ThemeContext } from '../Components/ThemeContext';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -12,7 +13,7 @@ export default function AddActivityScreen() {
   const [date, setDate] = useState(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const navigation = useNavigation();
-
+  const { theme } = useContext(ThemeContext);
 
   const onChangeDate = (event, selectedDate) => {
     setDate(selectedDate); // Update the date state
@@ -53,14 +54,14 @@ export default function AddActivityScreen() {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.label}>Description *</Text>
+        <Text style={[styles.label, { color: theme.headerColor}]}>Description *</Text>
         <TextInput
         style={styles.input}
         keyboardType="numeric"
         value={description}
         onChangeText={setDescription}
       />
-      <Text style={styles.label}>Calories *</Text>
+      <Text style={[styles.label, { color: theme.headerColor}]}>Calories *</Text>
       <TextInput
         style={styles.input}
         keyboardType="numeric"
@@ -68,7 +69,7 @@ export default function AddActivityScreen() {
         onChangeText={setCalories}
       />
 
-        <Text style={styles.label}>Date *</Text>
+        <Text style={[styles.label, { color: theme.headerColor}]}>Date *</Text>
         <TextInput
           style={styles.input}
           value={date ? `${date.toLocaleDateString('en-US', { weekday: 'short' })} ${date.toLocaleDateString('en-US', { month: 'short' })} ${date.toLocaleDateString('en-US', { day: '2-digit' })} ${date.getFullYear()}` : ''}
@@ -92,13 +93,13 @@ export default function AddActivityScreen() {
           title="Save" 
           onPress={() => validateAndSave()}
           buttonStyle={styles.addActivityButton}
-          textStyle={styles.addActivityButtonText}
+          textStyle={[styles.addActivityButtonText, { color: theme.headerColor}]}
         />
         <Button 
           title="Cancel" 
           onPress={() => navigation.goBack()}
           buttonStyle={styles.addActivityButton}
-          textStyle={styles.addActivityButtonText} />
+          textStyle={[styles.addActivityButtonText, { color: theme.headerColor}]} />
       </View>
 
     </View>
@@ -116,9 +117,9 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   label: {
-        fontSize: 16,
-        marginBottom: 8,
-        color: Colors.primary,
+    fontSize: 16,
+    marginBottom: 8,
+    color: Colors.primary,
   },
   input: {
     borderWidth: 1,
