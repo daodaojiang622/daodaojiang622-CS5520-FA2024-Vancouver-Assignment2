@@ -4,15 +4,16 @@ import Colors from '../Utils/Colors';
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [isPinkTheme, setIsPinkTheme] = useState(false);
+  const [isGreenTheme, setIsGreenTheme] = useState(false);
 
   const toggleTheme = () => {
-    setIsPinkTheme((prevTheme) => !prevTheme);
+    setIsGreenTheme((prevTheme) => !prevTheme);
   };
 
   const theme = {
-    backgroundColor: isPinkTheme ? Colors.background : Colors.toggleThemeBackground,
-    textColor: isPinkTheme ? Colors.primary: Colors.toggleThemeHeader,
+    backgroundColor: isGreenTheme ? Colors.background : Colors.toggleThemeBackground,
+    textColor: isGreenTheme ? Colors.primary: Colors.toggleThemeHeader,
+    headerColor: isGreenTheme ? Colors.primary : Colors.toggleThemeHeader,
   };
 
   return (
