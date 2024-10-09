@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { DataContext } from './DataContext';
 import Colors from '../Utils/Colors';
+import { ThemeContext } from './ThemeContext';
 
 const ItemsList = ({ type }) => {
   const data = useContext(DataContext);
+  const { theme } = useContext(ThemeContext);
 
     // Filter data based on the type prop
     const filteredData = data.filter(item => {
@@ -17,7 +19,7 @@ const ItemsList = ({ type }) => {
     });
 
   const renderItem = ({ item }) => (
-    <View style={styles.activityContainer}>
+    <View style={[styles.activityContainer, {backgroundColor: theme.headerColor}]}>
       <Text style={styles.name}>{item.name}</Text>
 
       {(item.name === 'Running' || item.name === 'Weight Training') && parseInt(item.otherData) > 60 && (
