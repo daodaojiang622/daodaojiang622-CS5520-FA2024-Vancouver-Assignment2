@@ -6,7 +6,7 @@ const Colors = {
     background: '#c0c4d1',
 
     toggleThemeHeader: '#405c47',
-    toggleThemeBackground: '#b4bfb7',
+    toggleThemeBackground: '#d3dbd5',
 
     noColor: 'transparent',
 

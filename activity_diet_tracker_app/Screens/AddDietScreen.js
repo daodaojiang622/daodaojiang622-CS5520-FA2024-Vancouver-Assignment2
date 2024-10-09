@@ -53,7 +53,7 @@ export default function AddActivityScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
         <Text style={[styles.label, { color: theme.headerColor}]}>Description *</Text>
         <TextInput
         style={styles.input}
@@ -110,7 +110,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    margin: 20,
   },
   dropdown: {
     marginBottom: 20,
