@@ -1,5 +1,5 @@
 import React, { useContext} from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -13,6 +13,8 @@ import AddDietScreen from './Screens/AddDietScreen';
 import Colors from './Utils/Colors';
 import { ThemeProvider, ThemeContext } from './Components/ThemeContext';
 import ScreenWrapper from './Components/ScreenWrapper';
+import addIcon from './assets/addIcon.png';
+import Button from './Components/Button';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -71,13 +73,10 @@ function BottomTabs() {
           component={ActivitiesScreenWrapper} 
           options={({ navigation }) => ({ 
             headerRight: () => (
-              <TouchableOpacity 
-                onPress={() => navigation.navigate('AddActivity')}>
-                <MaterialIcons 
-                  name="add-circle-outline" 
-                  style={styles.addButton}
-                />
-              </TouchableOpacity>
+            <Button
+              onPress={() => navigation.navigate('AddActivity')}
+              imageSource={addIcon}
+            />
             ),
             headerTintColor: Colors.tertiary,
           })}  
@@ -87,13 +86,10 @@ function BottomTabs() {
           component={DietScreenWrapper} 
           options={({ navigation }) => ({ 
             headerRight: () => (
-              <TouchableOpacity 
-                onPress={() => navigation.navigate('AddDiet')}>
-                <MaterialIcons 
-                  name="add-circle-outline" 
-                  style={styles.addButton}
-                />
-              </TouchableOpacity>
+              <Button
+              onPress={() => navigation.navigate('AddActivity')}
+              imageSource={addIcon}
+            />
             ),
             headerTintColor: Colors.tertiary,
           })}  
@@ -161,16 +157,5 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     zIndex: 1,
-  },
-  addButtonText: {
-    color: Colors.secondary,
-    fontSize: 16,
-    marginRight: 25,
-    fontWeight: 'bold',
-  },
-  addButton: {
-    color: Colors.tertiary,
-    fontSize: 25,
-    marginRight: 35,
   },
 });
