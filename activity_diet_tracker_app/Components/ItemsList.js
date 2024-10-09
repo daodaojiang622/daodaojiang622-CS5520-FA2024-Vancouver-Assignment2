@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { DataContext } from './DataContext';
 import Colors from '../Utils/Colors';
 import { ThemeContext } from './ThemeContext';
+import SpecialIndicator from './SpecialIndicator';
 
 const ItemsList = ({ type }) => {
   const data = useContext(DataContext);
@@ -23,10 +24,10 @@ const ItemsList = ({ type }) => {
       <Text style={styles.name}>{item.name}</Text>
 
       {(item.name === 'Running' || item.name === 'Weight Training') && parseInt(item.otherData) > 60 && (
-          <Text style={styles.special}>{'!'}</Text>
+          <SpecialIndicator />
         )}
       {item.id.startsWith('d') && parseInt(item.otherData) > 800 && (
-          <Text style={styles.special}>{'!'}</Text>
+          <SpecialIndicator />
       )}
 
       <View style={styles.dataContainer}>

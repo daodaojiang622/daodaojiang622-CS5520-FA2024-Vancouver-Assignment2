@@ -1,5 +1,5 @@
 import React, { useContext} from 'react';
-import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -20,7 +20,6 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function ActivitiesScreenWrapper() {
-
   return (
     <ScreenWrapper>
       <ItemsList type='activity'/>
@@ -29,7 +28,6 @@ function ActivitiesScreenWrapper() {
 }
 
 function DietScreenWrapper() {
-  
   return (
     <ScreenWrapper>
       <ItemsList type='diet'/>
