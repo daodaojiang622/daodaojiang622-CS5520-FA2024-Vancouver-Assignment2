@@ -16,15 +16,7 @@ import { ThemeProvider, ThemeContext } from './Components/ThemeContext';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function ScreenWrapper({ children }) {
-  return <View style={styles.screenContainer}>{children}</View>;
-}
-
-function ActivitiesScreenWrapper({ navigation }) {
-  const handleAddPressActScreen = () => {
-    navigation.navigate('AddActivity');
-  };
-
+function ActivitiesScreenWrapper() {
   return <ItemsList type='activity'/>;
 }
 
@@ -34,9 +26,9 @@ function DietScreenWrapper() {
 
 function SettingsScreenWrapper() {
   return (
-    <ScreenWrapper>
+    <View style={styles.screenContainer}>
       <SettingsScreen />
-    </ScreenWrapper>
+    </View>
   );
 }
 

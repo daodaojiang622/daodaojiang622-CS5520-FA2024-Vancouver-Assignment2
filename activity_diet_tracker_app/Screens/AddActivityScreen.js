@@ -57,7 +57,7 @@ export default function AddActivityScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
         <Text style={[styles.label, { color: theme.headerColor}]}>Activity *</Text>
         <DropDownPicker
             open={open}
@@ -67,8 +67,8 @@ export default function AddActivityScreen() {
             setValue={setValue}
             setItems={setItems}
             placeholder="Select an activity"
-            style={styles.dropdown}
-            dropDownContainerStyle={styles.dropdownContainer}
+            style={[styles.dropdown, {backgroundColor: theme.backgroundColor}]}
+            dropDownContainerStyle={[styles.dropdownContainer, {backgroundColor: theme.backgroundColor}]}
             maxHeight={400}
         />
       <Text style={[styles.label, { color: theme.headerColor}]}>Duration (min) *</Text>
@@ -121,14 +121,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    margin: 20,
+    backgroundColor: Colors.background,
   },
   dropdown: {
     marginBottom: 20,
     width: '100%',
+    backgroundColor: Colors.background,
   },
   dropdownContainer: {
-    backgroundColor: Colors.dropDownColor,
+    backgroundColor: Colors.background,
   },
   label: {
         fontSize: 16,
