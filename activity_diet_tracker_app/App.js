@@ -9,7 +9,7 @@ import AddActivityScreen from './Screens/AddActivityScreen';
 import ItemsList from './Components/ItemsList';
 import { DataProvider } from './Components/DataContext';
 import AddDietScreen from './Screens/AddDietScreen';
-import Colors from './Utils/Style';
+import { Colors } from './Utils/Style';
 import { ThemeProvider, ThemeContext } from './Components/ThemeContext';
 import ScreenWrapper from './Components/ScreenWrapper';
 import addIcon from './assets/addIcon.png';

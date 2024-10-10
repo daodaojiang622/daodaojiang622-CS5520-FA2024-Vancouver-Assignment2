@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import Button from '../Components/Button';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
-import Colors from '../Utils/Style';
+import { Colors, BorderWidth, Padding, FontSize, BorderRadius, ContainerStyle, Width } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
 import { DataContext } from '../Components/DataContext';
 
@@ -115,40 +115,40 @@ export default function AddActivityScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 20,
+    flex: ContainerStyle.flex,
+    padding: Padding.large,
   },
   dropdown: {
     marginBottom: 20,
-    width: '100%',
+    width: Width.large,
   },
   label: {
-    fontSize: 16,
+    fontSize: FontSize.medium,
     marginBottom: 8,
     color: Colors.primary,
   },
   input: {
-    borderWidth: 1,
+    borderWidth: BorderWidth.thin,
     borderColor: Colors.inputBorder,
     padding: 8,
-    borderRadius: 4,
+    borderRadius: BorderRadius.small,
     marginBottom: 20,
-    width: '100%',
+    width: Width.large,
   },
   addActivityButton: {
     backgroundColor: Colors.noColor,
-    padding: 10,
-    borderRadius: 5,
+    padding: Padding.medium,
+    borderRadius: BorderRadius.small,
     marginRight: 25,
-    width: '35%',
+    width: Width.small,
   },
   addActivityButtonText: {
     color: Colors.primary,
-    fontSize: 16,
+    fontSize: FontSize.medium,
   },
   buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: ContainerStyle.flexDirection,
+    justifyContent: ContainerStyle.justifyContent,
     marginTop: 300,
     marginLeft: 30,
   },

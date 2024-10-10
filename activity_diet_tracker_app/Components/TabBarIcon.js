@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';
-import icon from '../Utils/Style';
+import { FontSize } from '../Utils/Style';
 
 const TabBarIcon = ({ routeName, iconStyle }) => {
   let iconName;
@@ -23,7 +23,7 @@ const TabBarIcon = ({ routeName, iconStyle }) => {
 
 const styles = StyleSheet.create({
   icon: {
-    fontSize: 24,
+    fontSize: FontSize.large,
   },
 });
 

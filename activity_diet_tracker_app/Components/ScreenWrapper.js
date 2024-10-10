@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { ThemeContext } from './ThemeContext';
+import { ContainerStyle } from '../Utils/Style';
 
 export default function ScreenWrapper({ children }) {
   const { theme } = useContext(ThemeContext);
@@ -14,7 +15,7 @@ export default function ScreenWrapper({ children }) {
 
 const styles = StyleSheet.create({
   screenContainer: {
-    flex: 1,
-    flexGrow: 1,
+    flex: ContainerStyle.flex,
+    flexGrow: ContainerStyle.flexGrow,
   },
 });

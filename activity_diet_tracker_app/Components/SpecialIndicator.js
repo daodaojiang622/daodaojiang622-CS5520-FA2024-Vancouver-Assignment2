@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import Colors from '../Utils/Style';
+import { Colors, FontSize } from '../Utils/Style';
 
 const SpecialIndicator = () => {
   return <Text style={styles.special}>{'!'}</Text>;
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   special: {
     color: Colors.secondary,
     fontWeight: 'bold',
-    fontSize: 24,
+    fontSize: FontSize.large,
     marginRight: 5,
   },
 });

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { DataContext } from './DataContext';
-import Colors from '../Utils/Style';
+import { Colors, Padding, FontSize, BorderRadius, ContainerStyle, Width } from '../Utils/Style';
 import { ThemeContext } from './ThemeContext';
 import SpecialIndicator from './SpecialIndicator';
 
@@ -53,17 +53,17 @@ const ItemsList = ({ type }) => {
 
 const styles = StyleSheet.create({
   activityContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: ContainerStyle.flexDirection,
+    justifyContent: ContainerStyle.justifyContent,
     padding: 15,
     backgroundColor: Colors.primary,
-    borderRadius: 5,
-    width: '85%',
+    borderRadius: BorderRadius.small,
+    width: Width.medium,
     alignSelf: 'center',
     marginTop: 15,
   },
   name: {
-    flex: 1,
+    flex: ContainerStyle.flex,
     textAlign: 'left',
     color: Colors.tertiary,
     fontWeight: 'bold',
@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
   },
   dataContainer: {
     backgroundColor: Colors.tertiary,
-    borderRadius: 5,
-    padding: 5,
+    borderRadius: BorderRadius.small,
+    padding: Padding.small,
     width: 'auto',
     marginHorizontal: 5,
     paddingHorizontal: 10,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   special: {
     color: Colors.secondary,
     fontWeight: 'bold',
-    fontSize: 24,
+    fontSize: FontSize.large,
     marginRight: 5,
   },
 });
