@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
-import { Colors, Padding, FontSize, BorderRadius, Margin, ContainerStyle } from '../Utils/Style';
+import { Colors, Padding, Font, BorderRadius, Margin, ContainerStyle } from '../Utils/Style';
 
 const Button = ({ onPress, title, textStyle, buttonStyle, imageSource, imageStyle }) => (
   <TouchableOpacity style={[styles.button, buttonStyle]} onPress={onPress}>
@@ -15,19 +15,19 @@ const Button = ({ onPress, title, textStyle, buttonStyle, imageSource, imageStyl
 const styles = StyleSheet.create({
   button: {
     backgroundColor: Colors.noColor,
-    padding: Padding.medium,
+    padding: Padding.large,
     borderRadius: BorderRadius.small,
     alignItems: ContainerStyle.alignItems,
   },
   buttonText: {
     color: Colors.tertiary,
-    fontSize: FontSize.medium,
+    fontSize: Font.sizeMedium,
     marginRight: Margin.xlarge,
-    fontWeight: 'bold',
+    fontWeight: Font.weight,
   },
   buttonImage: {
-    width: 25,
-    height: 25,
+    width: Image.width,
+    height: Image.height,
     marginRight: Margin.xlarge,
   },
 });

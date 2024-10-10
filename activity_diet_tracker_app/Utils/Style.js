@@ -17,14 +17,16 @@ const Colors = {
 
 const Padding = {
     small: 5,
-    medium: 10,
-    large: 20,
+    medium: 8,
+    large: 10,
+    xlarge: 20,
 };
 
-const FontSize = {
-    small: 12,
-    medium: 16,
-    large: 24,
+const Font = {
+    sizeSmall: 12,
+    sizeMedium: 16,
+    SizeLarge: 24,
+    weight: 'bold',
 };
 
 const BorderWidth = {
@@ -64,4 +66,9 @@ const Margin = {
     xxxxlarge: 300,
 };
 
-export { Colors, Padding, FontSize, BorderWidth, BorderRadius, ContainerStyle, Width, Margin };
+const Image = {
+    height: 25,
+    width: 25,
+};
+
+export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image };

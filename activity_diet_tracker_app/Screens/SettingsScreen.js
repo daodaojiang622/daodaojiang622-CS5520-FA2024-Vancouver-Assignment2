@@ -22,7 +22,7 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: ContainerStyle.flex,
-    padding: Padding.large,
+    padding: Padding.xlarge,
     backgroundColor: Colors.background,
   },
   themeButtonText: {

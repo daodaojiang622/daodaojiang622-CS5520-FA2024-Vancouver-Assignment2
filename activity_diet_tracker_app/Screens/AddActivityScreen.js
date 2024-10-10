@@ -4,7 +4,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Button from '../Components/Button';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
-import { Colors, Padding, FontSize, BorderWidth, BorderRadius, ContainerStyle, Width, Margin } from '../Utils/Style';
+import { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
 import { DataContext } from '../Components/DataContext';
 
@@ -136,7 +136,7 @@ export default function AddActivityScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: ContainerStyle.flex,
-    padding: Padding.large,
+    padding: Padding.xlarge,
     backgroundColor: Colors.background,
   },
   dropdown: {
@@ -148,28 +148,28 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   label: {
-    fontSize: FontSize.medium,
+    fontSize: Font.sizeMedium,
     marginBottom: Margin.small,
     color: Colors.primary,
   },
   input: {
     borderWidth: BorderWidth.thin,
     borderColor: Colors.inputBorder,
-    padding: 8,
+    padding: Padding.medium,
     borderRadius: BorderRadius.small,
     marginBottom: Margin.large,
     width: Width.large,
   },
   addActivityButton: {
     backgroundColor: Colors.noColor,
-    padding: Padding.medium,
+    padding: Padding.large,
     borderRadius: BorderRadius.small,
     marginRight: Margin.xlarge,
     width: Width.small,
   },
   addActivityButtonText: {
     color: Colors.primary,
-    fontSize: FontSize.medium,
+    fontSize: Font.sizeMedium,
   },
   buttonContainer: {
     flexDirection: ContainerStyle.flexDirection,

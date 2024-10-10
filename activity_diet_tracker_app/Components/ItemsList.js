@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { DataContext } from './DataContext';
-import { Colors, Padding, FontSize, BorderRadius, ContainerStyle, Width, Margin } from '../Utils/Style';
+import { Colors, Padding, Font, BorderRadius, ContainerStyle, Width, Margin } from '../Utils/Style';
 import { ThemeContext } from './ThemeContext';
 import SpecialIndicator from './SpecialIndicator';
 
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   activityContainer: {
     flexDirection: ContainerStyle.flexDirection,
     justifyContent: ContainerStyle.justifyContent,
-    padding: 15,
+    padding: Padding.large,
     backgroundColor: Colors.primary,
     borderRadius: BorderRadius.small,
     width: Width.medium,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     flex: ContainerStyle.flex,
     textAlign: 'left',
     color: Colors.tertiary,
-    fontWeight: 'bold',
+    fontWeight: Font.weight,
   },
   data: {
     textAlign: 'center',
@@ -77,12 +77,12 @@ const styles = StyleSheet.create({
     padding: Padding.small,
     width: 'auto',
     marginHorizontal: Margin.xsmall,
-    paddingHorizontal: Padding.medium,
+    paddingHorizontal: Padding.large,
   },
   special: {
     color: Colors.secondary,
-    fontWeight: 'bold',
-    fontSize: FontSize.large,
+    fontWeight: Font.weight,
+    fontSize: Font.sizeLarge,
     marginRight: Margin.xsmall,
   },
 });
