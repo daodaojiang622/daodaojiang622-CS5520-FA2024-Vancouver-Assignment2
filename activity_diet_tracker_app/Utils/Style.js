@@ -71,4 +71,10 @@ const Image = {
     width: 25,
 };
 
-export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image };
+const Align = {
+    center: 'center',
+    left: 'left',
+    right: 'right',
+};
+
+export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align };
