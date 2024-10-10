@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import Button from '../Components/Button';
-import { Colors, Padding, FontSize, BorderWidth, BorderRadius, ContainerStyle, Width } from '../Utils/Style';
+import { Colors, Padding, Margin, ContainerStyle } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
 
 export default function SettingsScreen() {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     color: Colors.primary,
   },
   themeButton: {
-    marginTop: 250,
-    marginLeft: 30,
+    marginTop: Margin.xxxlarge,
+    marginLeft: Margin.xxlarge,
   },
 });

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { DataContext } from './DataContext';
-import { Colors, Padding, FontSize, BorderRadius, ContainerStyle, Width } from '../Utils/Style';
+import { Colors, Padding, FontSize, BorderRadius, ContainerStyle, Width, Margin } from '../Utils/Style';
 import { ThemeContext } from './ThemeContext';
 import SpecialIndicator from './SpecialIndicator';
 
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.small,
     width: Width.medium,
     alignSelf: 'center',
-    marginTop: 15,
+    marginTop: Margin.medium,
   },
   name: {
     flex: ContainerStyle.flex,
@@ -76,14 +76,14 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.small,
     padding: Padding.small,
     width: 'auto',
-    marginHorizontal: 5,
-    paddingHorizontal: 10,
+    marginHorizontal: Margin.xsmall,
+    paddingHorizontal: Padding.medium,
   },
   special: {
     color: Colors.secondary,
     fontWeight: 'bold',
     fontSize: FontSize.large,
-    marginRight: 5,
+    marginRight: Margin.xsmall,
   },
 });
 

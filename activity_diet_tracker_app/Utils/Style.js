@@ -44,6 +44,7 @@ const ContainerStyle = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     flexGrow: 1,
+    alignItems: 'center',
 };
 
 const Width = {
@@ -52,4 +53,15 @@ const Width = {
     large: '100%',
 };
 
-export { Colors, Padding, FontSize, BorderWidth, BorderRadius, ContainerStyle, Width };
+const Margin = {
+    xsmall: 5,
+    small: 8,
+    medium: 15,
+    large: 20,
+    xlarge: 25,
+    xxlarge: 30,
+    xxxlarge: 250,
+    xxxxlarge: 300,
+};
+
+export { Colors, Padding, FontSize, BorderWidth, BorderRadius, ContainerStyle, Width, Margin };
