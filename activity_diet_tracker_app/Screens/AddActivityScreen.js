@@ -62,7 +62,7 @@ export default function AddActivityScreen() {
             date.toLocaleDateString('en-US', { month: 'short' }) + ' ' +
             date.toLocaleDateString('en-US', { day: '2-digit' }) + ' ' +
             date.getFullYear(),
-      otherData: `${duration} mins`
+      otherData: `${duration} min`
     };
   
     // Update the data state with the new activity
