@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';
-import icon from '../Utils/Colors';
+import icon from '../Utils/Style';
 
 const TabBarIcon = ({ routeName, iconStyle }) => {
   let iconName;

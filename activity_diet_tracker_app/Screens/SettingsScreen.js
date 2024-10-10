@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import Button from '../Components/Button';
-import Colors from '../Utils/Colors';
+import Colors from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
 
 export default function SettingsScreen() {

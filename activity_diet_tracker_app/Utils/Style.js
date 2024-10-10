@@ -15,4 +15,16 @@ const Colors = {
     inputBorder: 'black',
 };
 
-export default Colors;
+const Padding = {
+    small: 5,
+    medium: 10,
+    large: 15,
+};
+
+const FontSize = {
+    small: 12,
+    medium: 16,
+    large: 20,
+};
+
+export { Colors, Padding, FontSize };

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { DataContext } from './DataContext';
-import Colors from '../Utils/Colors';
+import Colors from '../Utils/Style';
 import { ThemeContext } from './ThemeContext';
 import SpecialIndicator from './SpecialIndicator';
 

@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import Button from '../Components/Button';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
-import Colors from '../Utils/Colors';
+import Colors from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
 import { DataContext } from '../Components/DataContext';
 
@@ -54,7 +54,7 @@ export default function AddActivityScreen() {
     };
 
     updateData(newActivity);
-    
+
     navigation.goBack();
   
   };
