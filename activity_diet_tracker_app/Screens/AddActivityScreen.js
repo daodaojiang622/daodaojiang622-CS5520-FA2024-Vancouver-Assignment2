@@ -86,7 +86,6 @@ export default function AddActivityScreen() {
             placeholder="Select an activity"
             style={[styles.dropdown, {backgroundColor: theme.backgroundColor}]}
             dropDownContainerStyle={[styles.dropdownContainer, {backgroundColor: theme.backgroundColor}]}
-            maxHeight={400}
         />
 
       <FormInput label="Duration (min)" value={duration} onChangeText={setDuration} theme={theme} />

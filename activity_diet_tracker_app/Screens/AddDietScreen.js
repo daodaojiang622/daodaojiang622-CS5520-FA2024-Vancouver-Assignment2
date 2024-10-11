@@ -77,7 +77,7 @@ export default function AddActivityScreen() {
         value={calories}
         onChangeText={setCalories}
       /> */}
-      <FormInput label="Description" value={description} onChangeText={setDescription} theme={theme} />
+      <FormInput label="Description" value={description} onChangeText={setDescription} theme={theme} inputStyle={styles.descriptionStyle} />
       <FormInput label="Calories" value={calories} onChangeText={setCalories} keyboardType="numeric" theme={theme} />
       
 
@@ -111,19 +111,6 @@ const styles = StyleSheet.create({
     marginBottom: Margin.large,
     width: Width.large,
   },
-  label: {
-    fontSize: Font.sizeMedium,
-    marginBottom: Margin.small,
-    color: Colors.primary,
-  },
-  input: {
-    borderWidth: BorderWidth.thin,
-    borderColor: Colors.inputBorder,
-    padding: Padding.medium,
-    borderRadius: BorderRadius.small,
-    marginBottom: Margin.large,
-    width: Width.large,
-  },
   addActivityButton: {
     backgroundColor: Colors.noColor,
     padding: Padding.large,
@@ -140,5 +127,8 @@ const styles = StyleSheet.create({
     justifyContent: ContainerStyle.justifyContent,
     marginTop: Margin.xxxxlarge,
     marginLeft: Margin.xxlarge,
+  },
+  descriptionStyle: {
+    height: 100,
   },
 });
