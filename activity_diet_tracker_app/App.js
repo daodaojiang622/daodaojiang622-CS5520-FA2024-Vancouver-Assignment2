@@ -9,11 +9,9 @@ import AddActivityScreen from './Screens/AddActivityScreen';
 import ItemsList from './Components/ItemsList';
 import { DataProvider } from './Components/DataContext';
 import AddDietScreen from './Screens/AddDietScreen';
-import { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align } from './Utils/Style';
+import { Colors, Padding, Font } from './Utils/Style';
 import { ThemeProvider, ThemeContext } from './Components/ThemeContext';
 import ScreenWrapper from './Components/ScreenWrapper';
-import addIcon from './assets/addIcon.png';
-import Button from './Components/Button';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 const Stack = createNativeStackNavigator();

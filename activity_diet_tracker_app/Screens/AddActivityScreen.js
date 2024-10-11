@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
 import { DataContext } from '../Components/DataContext';
+import DateInput from '../Components/DateInput';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -96,7 +97,7 @@ export default function AddActivityScreen() {
         placeholder="Enter duration"
       />
 
-        <Text style={[styles.label, { color: theme.headerColor}]}>Date *</Text>
+        {/* <Text style={[styles.label, { color: theme.headerColor}]}>Date *</Text>
         <TextInput
           style={styles.input}
           value={date ? `${date.toLocaleDateString('en-US', { weekday: 'short' })} ${date.toLocaleDateString('en-US', { month: 'short' })} ${date.toLocaleDateString('en-US', { day: '2-digit' })} ${date.getFullYear()}` : ''}
@@ -112,7 +113,8 @@ export default function AddActivityScreen() {
           display="inline"
           onChange={onChangeDate}
         />
-      )}
+      )} */}
+      <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
       
 
       <View style={styles.buttonContainer}>
