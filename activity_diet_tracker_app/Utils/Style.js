@@ -20,6 +20,7 @@ const Padding = {
     medium: 8,
     large: 10,
     xlarge: 20,
+    xxlarge: 30,
 };
 
 const Font = {

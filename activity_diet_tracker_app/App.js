@@ -1,4 +1,5 @@
 import React, { useContext} from 'react';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,11 +9,12 @@ import AddActivityScreen from './Screens/AddActivityScreen';
 import ItemsList from './Components/ItemsList';
 import { DataProvider } from './Components/DataContext';
 import AddDietScreen from './Screens/AddDietScreen';
-import { Colors } from './Utils/Style';
+import { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align } from './Utils/Style';
 import { ThemeProvider, ThemeContext } from './Components/ThemeContext';
 import ScreenWrapper from './Components/ScreenWrapper';
 import addIcon from './assets/addIcon.png';
 import Button from './Components/Button';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -68,9 +70,11 @@ function BottomTabs() {
           component={ActivitiesScreenWrapper} 
           options={({ navigation }) => ({ 
             headerRight: () => (
-            <Button
-              onPress={() => navigation.navigate('AddActivity')}
-              imageSource={addIcon}
+              <MaterialIcons 
+              name="add-circle-outline" 
+              onPress={() => 
+                navigation.navigate('AddActivity')} 
+              style={styles.addIcon} 
             />
             ),
             headerTintColor: Colors.tertiary,
@@ -81,9 +85,11 @@ function BottomTabs() {
           component={DietScreenWrapper} 
           options={({ navigation }) => ({ 
             headerRight: () => (
-              <Button
-              onPress={() => navigation.navigate('AddDiet')}
-              imageSource={addIcon}
+            <MaterialIcons 
+              name="add-circle-outline" 
+              onPress={() => 
+                navigation.navigate('AddDiet')} 
+              style={styles.addIcon} 
             />
             ),
             headerTintColor: Colors.tertiary,
@@ -148,3 +154,11 @@ function AppContent() {
       </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  addIcon: {
+    color: Colors.tertiary,
+    paddingRight: Padding.xxlarge,
+    fontSize: Font.SizeLarge,
+  },
+});
