@@ -4,6 +4,7 @@ import { DataContext } from './DataContext';
 import { Colors, Padding, Font, BorderRadius, ContainerStyle, Width, Margin, Align } from '../Utils/Style';
 import { ThemeContext } from './ThemeContext';
 import SpecialIndicator from './SpecialIndicator';
+import DataItem from './DataItem';
 
 const ItemsList = ({ type }) => {
   const { data } = useContext(DataContext);
@@ -33,12 +34,8 @@ const ItemsList = ({ type }) => {
           <SpecialIndicator />
       )}
 
-      <View style={styles.dataContainer}>
-        <Text style={styles.data}>{item.date}</Text>
-      </View>
-      <View style={styles.dataContainer}>
-        <Text style={styles.data}>{item.otherData}</Text>
-      </View>
+      <DataItem data={item.date} />
+      <DataItem data={item.otherData} />
     </View>
   );} 
 
@@ -68,16 +65,16 @@ const styles = StyleSheet.create({
     color: Colors.tertiary,
     fontWeight: Font.weight,
   },
-  data: {
-    textAlign: Align.center,
-  },
-  dataContainer: {
-    backgroundColor: Colors.tertiary,
-    borderRadius: BorderRadius.small,
-    padding: Padding.small,
-    marginHorizontal: Margin.xsmall,
-    paddingHorizontal: Padding.large,
-  },
+  // data: {
+  //   textAlign: Align.center,
+  // },
+  // dataContainer: {
+  //   backgroundColor: Colors.tertiary,
+  //   borderRadius: BorderRadius.small,
+  //   padding: Padding.small,
+  //   marginHorizontal: Margin.xsmall,
+  //   paddingHorizontal: Padding.large,
+  // },
   special: {
     color: Colors.secondary,
     fontWeight: Font.weight,
