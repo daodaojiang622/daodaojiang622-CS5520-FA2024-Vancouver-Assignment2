@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Button from './Button';
-import { Colors, Padding, Font, BorderRadius, ContainerStyle, Width, Margin } from '../Utils/Style';
+import { Colors, Padding, Font, BorderRadius, ContainerStyle, Width, Margin, Position } from '../Utils/Style';
 
 export default function AddScreenButtons({ onSave, onCancel, theme }) {
   return (
@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: ContainerStyle.flexDirection,
         justifyContent: ContainerStyle.justifyContent,
-        marginTop: Margin.xxxxlarge,
-        marginLeft: Margin.xxlarge,
+        marginTop: Margin.xxxxxlarge,
+        marginLeft: Margin.xxxlarge,
+        position: Position.absolute,
     },
 });

@@ -65,16 +65,6 @@ const styles = StyleSheet.create({
     color: Colors.tertiary,
     fontWeight: Font.weight,
   },
-  // data: {
-  //   textAlign: Align.center,
-  // },
-  // dataContainer: {
-  //   backgroundColor: Colors.tertiary,
-  //   borderRadius: BorderRadius.small,
-  //   padding: Padding.small,
-  //   marginHorizontal: Margin.xsmall,
-  //   paddingHorizontal: Padding.large,
-  // },
   special: {
     color: Colors.secondary,
     fontWeight: Font.weight,

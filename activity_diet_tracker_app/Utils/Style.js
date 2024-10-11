@@ -63,8 +63,9 @@ const Margin = {
     large: 20,
     xlarge: 25,
     xxlarge: 30,
-    xxxlarge: 250,
-    xxxxlarge: 300,
+    xxxlarge: 120,
+    xxxxlarge: 250,
+    xxxxxlarge: 640,
 };
 
 const Image = {
@@ -78,4 +79,8 @@ const Align = {
     right: 'right',
 };
 
-export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align };
+const Position = {
+    absolute: 'absolute',
+};
+
+export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align, Position };

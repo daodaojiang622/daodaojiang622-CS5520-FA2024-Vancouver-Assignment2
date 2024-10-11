@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     color: Colors.primary,
   },
   themeButton: {
-    marginTop: Margin.xxxlarge,
+    marginTop: Margin.xxxxlarge,
     marginLeft: Margin.xxlarge,
   },
 });
