@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { DataContext } from './DataContext';
 import { Colors, Padding, Font, BorderRadius, ContainerStyle, Width, Margin, Align } from '../Utils/Style';

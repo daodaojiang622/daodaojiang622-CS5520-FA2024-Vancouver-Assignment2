@@ -2,19 +2,17 @@ import { View, Text, StyleSheet, Alert } from 'react-native';
 import React, { useState, useContext } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useNavigation } from '@react-navigation/native';
-import { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin } from '../Utils/Style';
+import { Colors, Padding, Font, ContainerStyle, Width, Margin } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
 import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/addScreenButtons';
-import DateFormat from '../Utils/DateFormat';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState(null);
-  const [showDatePicker, setShowDatePicker] = useState(false);
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
   const { updateData } = useContext(DataContext);
@@ -48,7 +46,10 @@ export default function AddActivityScreen() {
     const newActivity = {
       id: `a${Date.now()}`,
       name: value,
-      date: DateFormat( date ),
+      date: date.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' +
+            date.toLocaleDateString('en-US', { month: 'short' }) + ' ' +
+            date.toLocaleDateString('en-US', { day: '2-digit' }) + ' ' +
+            date.getFullYear(),
       otherData: `${duration} min`
     };
   

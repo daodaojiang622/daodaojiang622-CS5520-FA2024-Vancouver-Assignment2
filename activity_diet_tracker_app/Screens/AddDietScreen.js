@@ -7,7 +7,6 @@ import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/addScreenButtons';
-import { DateFormat } from '../Utils/DateFormat';
 
 export default function AddActivityScreen() {
   const [description, setDescription] = useState('');
@@ -34,7 +33,10 @@ export default function AddActivityScreen() {
     const newActivity = { 
         id: `d${Date.now()}`, 
         name: description, 
-        date: DateFormat(date),
+        date: date.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' +
+              date.toLocaleDateString('en-US', { month: 'short' }) + ' ' +
+              date.toLocaleDateString('en-US', { day: '2-digit' }) + ' ' +
+              date.getFullYear(),
         otherData: calories
     };
 
