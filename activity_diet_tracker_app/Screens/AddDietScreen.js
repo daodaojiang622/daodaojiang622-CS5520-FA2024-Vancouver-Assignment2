@@ -1,35 +1,21 @@
-import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import React, { useState, useContext } from 'react';
-import Button from '../Components/Button';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
-import { Colors, BorderWidth, Padding, Font, BorderRadius, ContainerStyle, Width, Margin } from '../Utils/Style';
+import {  Padding, ContainerStyle } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
 import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/addScreenButtons';
+import { DateFormat } from '../Utils/DateFormat';
 
 export default function AddActivityScreen() {
-  const [open, setOpen] = useState(false);
   const [description, setDescription] = useState('');
   const [calories, setCalories] = useState('');
   const [date, setDate] = useState(null);
-  const [showDatePicker, setShowDatePicker] = useState(false);
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
-  const { data, updateData } = useContext(DataContext);
-
-  const onChangeDate = (event, selectedDate) => {
-    setDate(selectedDate); // Update the date state
-  };
-
-  const toggleDatePicker = () => {
-    if (!showDatePicker && !date) {
-      setDate(new Date()); // Set to current date if no date is selected
-    }
-    setShowDatePicker(!showDatePicker);
-  }
+  const { updateData } = useContext(DataContext);
 
   const validateAndSave = () => {
     if (!description) {
@@ -48,11 +34,7 @@ export default function AddActivityScreen() {
     const newActivity = { 
         id: `d${Date.now()}`, 
         name: description, 
-        date: 
-          date.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' +
-          date.toLocaleDateString('en-US', { month: 'short' }) + ' ' +
-          date.toLocaleDateString('en-US', { day: '2-digit' }) + ' ' +
-          date.getFullYear(),
+        date: DateFormat(date),
         otherData: calories
     };
 

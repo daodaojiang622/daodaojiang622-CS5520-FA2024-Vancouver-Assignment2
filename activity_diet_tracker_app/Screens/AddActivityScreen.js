@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import React, { useState, useContext } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
-import Button from '../Components/Button';
 import { useNavigation } from '@react-navigation/native';
 import { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
@@ -9,6 +8,7 @@ import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/addScreenButtons';
+import DateFormat from '../Utils/DateFormat';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -17,30 +17,18 @@ export default function AddActivityScreen() {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
-  const { data, updateData } = useContext(DataContext);
+  const { updateData } = useContext(DataContext);
   
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    { label: 'Walking', value: 'walking' },
-    { label: 'Running', value: 'running' },
-    { label: 'Swimming', value: 'swimming' },
+    { label: 'Walking', value: 'Walking' },
+    { label: 'Running', value: 'Running' },
+    { label: 'Swimming', value: 'Swimming' },
     { label: 'Weight Training', value: 'Weight Training' },
-    { label: 'Yoga', value: 'yoga' },
-    { label: 'Cycling', value: 'cycling' },
-    { label: 'Hiking', value: 'hiking' },
+    { label: 'Yoga', value: 'Yoga' },
+    { label: 'Cycling', value: 'Cycling' },
+    { label: 'Hiking', value: 'Hiking' },
   ]);
-
-
-  const onChangeDate = (event, selectedDate) => {
-    setDate(selectedDate); // Update the date state
-  };
-
-  const toggleDatePicker = () => {
-    if (!showDatePicker && !date) {
-      setDate(new Date()); // Set to current date if no date is selected
-    }
-    setShowDatePicker(!showDatePicker);
-  }
 
   const validateAndSave = () => {
 
@@ -58,12 +46,9 @@ export default function AddActivityScreen() {
     }
     // Create the new activity object
     const newActivity = {
-      id: `a${Date.now()}`, // Generate a unique ID
+      id: `a${Date.now()}`,
       name: value,
-      date: date.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' +
-            date.toLocaleDateString('en-US', { month: 'short' }) + ' ' +
-            date.toLocaleDateString('en-US', { day: '2-digit' }) + ' ' +
-            date.getFullYear(),
+      date: DateFormat( date ),
       otherData: `${duration} min`
     };
   
