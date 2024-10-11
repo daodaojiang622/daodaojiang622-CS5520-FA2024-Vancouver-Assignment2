@@ -8,6 +8,7 @@ import { ThemeContext } from '../Components/ThemeContext';
 import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
+import AddScreenButtons from '../Components/addScreenButtons';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -90,21 +91,7 @@ export default function AddActivityScreen() {
 
       <FormInput label="Duration (min)" value={duration} onChangeText={setDuration} theme={theme} />
       <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
-      
-
-      <View style={styles.buttonContainer}>
-        <Button 
-          title="Save" 
-          onPress={() => validateAndSave()}
-          buttonStyle={styles.addActivityButton}
-          textStyle={[styles.addActivityButtonText, { color: theme.headerColor}]}
-        />
-        <Button 
-          title="Cancel" 
-          onPress={() => navigation.goBack()}
-          buttonStyle={styles.addActivityButton}
-          textStyle={[styles.addActivityButtonText, { color: theme.headerColor}]} />
-      </View>
+      <AddScreenButtons onSave={validateAndSave} onCancel={() => navigation.goBack()} theme={theme} />    
 
     </View>
   );
@@ -128,30 +115,5 @@ const styles = StyleSheet.create({
     fontSize: Font.sizeMedium,
     marginBottom: Margin.small,
     color: Colors.primary,
-  },
-  input: {
-    borderWidth: BorderWidth.thin,
-    borderColor: Colors.inputBorder,
-    padding: Padding.medium,
-    borderRadius: BorderRadius.small,
-    marginBottom: Margin.large,
-    width: Width.large,
-  },
-  addActivityButton: {
-    backgroundColor: Colors.noColor,
-    padding: Padding.large,
-    borderRadius: BorderRadius.small,
-    marginRight: Margin.xlarge,
-    width: Width.small,
-  },
-  addActivityButtonText: {
-    color: Colors.primary,
-    fontSize: Font.sizeMedium,
-  },
-  buttonContainer: {
-    flexDirection: ContainerStyle.flexDirection,
-    justifyContent: ContainerStyle.justifyContent,
-    marginTop: Margin.xxxxlarge,
-    marginLeft: Margin.xxlarge,
   },
 });

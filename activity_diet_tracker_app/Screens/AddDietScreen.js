@@ -8,6 +8,7 @@ import { ThemeContext } from '../Components/ThemeContext';
 import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
+import AddScreenButtons from '../Components/addScreenButtons';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -63,41 +64,10 @@ export default function AddActivityScreen() {
 
   return (
     <View style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
-        {/* <Text style={[styles.label, { color: theme.headerColor}]}>Description *</Text>
-        <TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        value={description}
-        onChangeText={setDescription}
-      />
-      <Text style={[styles.label, { color: theme.headerColor}]}>Calories *</Text>
-      <TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        value={calories}
-        onChangeText={setCalories}
-      /> */}
       <FormInput label="Description" value={description} onChangeText={setDescription} theme={theme} inputStyle={styles.descriptionStyle} />
       <FormInput label="Calories" value={calories} onChangeText={setCalories} keyboardType="numeric" theme={theme} />
-      
-
       <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
-      
-
-      <View style={styles.buttonContainer}>
-        <Button 
-          title="Save" 
-          onPress={() => validateAndSave()}
-          buttonStyle={styles.addActivityButton}
-          textStyle={[styles.addActivityButtonText, { color: theme.headerColor}]}
-        />
-        <Button 
-          title="Cancel" 
-          onPress={() => navigation.goBack()}
-          buttonStyle={styles.addActivityButton}
-          textStyle={[styles.addActivityButtonText, { color: theme.headerColor}]} />
-      </View>
-
+      <AddScreenButtons onSave={validateAndSave} onCancel={() => navigation.goBack()} theme={theme} />     
     </View>
   );
 }
@@ -106,27 +76,6 @@ const styles = StyleSheet.create({
   container: {
     flex: ContainerStyle.flex,
     padding: Padding.xlarge,
-  },
-  dropdown: {
-    marginBottom: Margin.large,
-    width: Width.large,
-  },
-  addActivityButton: {
-    backgroundColor: Colors.noColor,
-    padding: Padding.large,
-    borderRadius: BorderRadius.small,
-    marginRight: Margin.xlarge,
-    width: Width.small,
-  },
-  addActivityButtonText: {
-    color: Colors.primary,
-    fontSize: Font.sizeMedium,
-  },
-  buttonContainer: {
-    flexDirection: ContainerStyle.flexDirection,
-    justifyContent: ContainerStyle.justifyContent,
-    marginTop: Margin.xxxxlarge,
-    marginLeft: Margin.xxlarge,
   },
   descriptionStyle: {
     height: 100,
