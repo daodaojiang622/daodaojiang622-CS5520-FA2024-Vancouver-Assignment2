@@ -13,6 +13,7 @@ export default function FormInput({ label, value, onChangeText, keyboardType = '
         keyboardType={keyboardType}
         placeholder={`Enter ${label.toLowerCase()}`}
         multiline={true}
+        textAlignVertical='top'
       />
     </View>
   );

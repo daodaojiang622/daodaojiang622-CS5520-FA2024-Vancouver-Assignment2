@@ -6,7 +6,7 @@ import { ThemeContext } from '../Components/ThemeContext';
 import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
-import AddScreenButtons from '../Components/addScreenButtons';
+import AddScreenButtons from '../Components/AddScreenButtons';
 
 export default function AddActivityScreen() {
   const [description, setDescription] = useState('');
