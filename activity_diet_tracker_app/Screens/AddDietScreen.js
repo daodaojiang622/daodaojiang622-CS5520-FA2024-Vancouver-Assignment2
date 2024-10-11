@@ -7,6 +7,7 @@ import { Colors, BorderWidth, Padding, Font, BorderRadius, ContainerStyle, Width
 import { ThemeContext } from '../Components/ThemeContext';
 import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
+import FormInput from '../Components/FormInput';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -62,7 +63,7 @@ export default function AddActivityScreen() {
 
   return (
     <View style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
-        <Text style={[styles.label, { color: theme.headerColor}]}>Description *</Text>
+        {/* <Text style={[styles.label, { color: theme.headerColor}]}>Description *</Text>
         <TextInput
         style={styles.input}
         keyboardType="numeric"
@@ -75,25 +76,11 @@ export default function AddActivityScreen() {
         keyboardType="numeric"
         value={calories}
         onChangeText={setCalories}
-      />
+      /> */}
+      <FormInput label="Description" value={description} onChangeText={setDescription} theme={theme} />
+      <FormInput label="Calories" value={calories} onChangeText={setCalories} keyboardType="numeric" theme={theme} />
+      
 
-        {/* <Text style={[styles.label, { color: theme.headerColor}]}>Date *</Text>
-        <TextInput
-          style={styles.input}
-          value={date ? `${date.toLocaleDateString('en-US', { weekday: 'short' })} ${date.toLocaleDateString('en-US', { month: 'short' })} ${date.toLocaleDateString('en-US', { day: '2-digit' })} ${date.getFullYear()}` : ''}
-          editable={false}
-          placeholder="Select date"
-          onChangeText={setDate}
-          onPress={toggleDatePicker}
-        />
-      {showDatePicker && (
-        <DateTimePicker
-          value={date || new Date()}
-          mode="date"
-          display="inline"
-          onChange={onChangeDate}
-        />
-      )} */}
       <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
       
 

@@ -2,12 +2,12 @@ import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
 import React, { useState, useContext } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Button from '../Components/Button';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
 import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
+import FormInput from '../Components/FormInput';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -88,32 +88,8 @@ export default function AddActivityScreen() {
             dropDownContainerStyle={[styles.dropdownContainer, {backgroundColor: theme.backgroundColor}]}
             maxHeight={400}
         />
-      <Text style={[styles.label, { color: theme.headerColor}]}>Duration (min) *</Text>
-      <TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        value={duration}
-        onChangeText={setDuration}
-        placeholder="Enter duration"
-      />
 
-        {/* <Text style={[styles.label, { color: theme.headerColor}]}>Date *</Text>
-        <TextInput
-          style={styles.input}
-          value={date ? `${date.toLocaleDateString('en-US', { weekday: 'short' })} ${date.toLocaleDateString('en-US', { month: 'short' })} ${date.toLocaleDateString('en-US', { day: '2-digit' })} ${date.getFullYear()}` : ''}
-          editable={false}
-          placeholder="Select date"
-          onChangeText={setDate}
-          onPress={toggleDatePicker}
-        />
-      {showDatePicker && (
-        <DateTimePicker
-          value={date || new Date()}
-          mode="date"
-          display="inline"
-          onChange={onChangeDate}
-        />
-      )} */}
+      <FormInput label="Duration (min)" value={duration} onChangeText={setDuration} theme={theme} />
       <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
       
 
