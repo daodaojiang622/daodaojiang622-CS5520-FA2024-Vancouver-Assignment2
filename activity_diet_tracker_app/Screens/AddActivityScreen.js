@@ -76,7 +76,7 @@ export default function AddActivityScreen() {
               dropDownContainerStyle={[styles.dropdownContainer, {backgroundColor: theme.backgroundColor}]}
           />
 
-        <FormInput label="Duration (min)" value={duration} onChangeText={setDuration} theme={theme} />
+        <FormInput label="Duration (min)" value={duration} onChangeText={setDuration} theme={theme} keyboardType="numeric" />
         <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
         <AddScreenButtons onSave={validateAndSave} onCancel={() => navigation.goBack()} theme={theme} />    
 
