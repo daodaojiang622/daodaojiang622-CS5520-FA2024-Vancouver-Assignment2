@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { Colors, Padding, Font, BorderWidth, BorderRadius, Margin, Width } from '../Utils/Style';
 
 export default function FormInput({ label, value, onChangeText, keyboardType = 'default', theme, inputStyle }) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
 import { Colors, Padding, Font, BorderRadius, Margin, ContainerStyle } from '../Utils/Style';
 
-const Button = ({ onPress, title, textStyle, buttonStyle, imageSource, imageStyle }) => (
+const Button = ({ onPress, title, textStyle, buttonStyle, imageSource }) => (
   <TouchableOpacity style={[styles.button, buttonStyle]} onPress={onPress}>
     {imageSource ? (
       <Image source={imageSource} style={[styles.buttonImage]} />

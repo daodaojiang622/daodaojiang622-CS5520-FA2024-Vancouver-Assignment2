@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Button from '../Components/Button';
 import { Colors, Padding, Margin, ContainerStyle } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
