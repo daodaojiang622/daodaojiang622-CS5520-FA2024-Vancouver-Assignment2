@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useState, useContext } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useNavigation } from '@react-navigation/native';
@@ -61,25 +61,27 @@ export default function AddActivityScreen() {
   };
 
   return (
-    <View style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
-        <Text style={[styles.label, { color: theme.headerColor}]}>Activity *</Text>
-        <DropDownPicker
-            open={open}
-            value={value}
-            items={items}
-            setOpen={setOpen}
-            setValue={setValue}
-            setItems={setItems}
-            placeholder="Select an activity"
-            style={[styles.dropdown, {backgroundColor: theme.backgroundColor}]}
-            dropDownContainerStyle={[styles.dropdownContainer, {backgroundColor: theme.backgroundColor}]}
-        />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
+          <Text style={[styles.label, { color: theme.headerColor}]}>Activity *</Text>
+          <DropDownPicker
+              open={open}
+              value={value}
+              items={items}
+              setOpen={setOpen}
+              setValue={setValue}
+              setItems={setItems}
+              placeholder="Select an activity"
+              style={[styles.dropdown, {backgroundColor: theme.backgroundColor}]}
+              dropDownContainerStyle={[styles.dropdownContainer, {backgroundColor: theme.backgroundColor}]}
+          />
 
-      <FormInput label="Duration (min)" value={duration} onChangeText={setDuration} theme={theme} />
-      <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
-      <AddScreenButtons onSave={validateAndSave} onCancel={() => navigation.goBack()} theme={theme} />    
+        <FormInput label="Duration (min)" value={duration} onChangeText={setDuration} theme={theme} />
+        <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
+        <AddScreenButtons onSave={validateAndSave} onCancel={() => navigation.goBack()} theme={theme} />    
 
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
