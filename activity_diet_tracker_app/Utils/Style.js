@@ -83,4 +83,15 @@ const Position = {
     absolute: 'absolute',
 };
 
-export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align, Position };
+const Icon = {
+    runningIconComponent: FontAwesome5,
+    runningIconName: 'running',
+    dietIconComponent: MaterialIcons,
+    dietIconName: 'fastfood',
+    settingsIconComponent: Ionicons,
+    settingsIconName: 'settings-sharp',
+    addIconComponent: FontAwesome5,
+    addIconName: 'add',
+};
+
+export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align, Position, Icon };

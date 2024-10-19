@@ -1,11 +1,15 @@
 import React from 'react';
 import { TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
 import { Colors, Padding, Font, BorderRadius, Margin, ContainerStyle } from '../Utils/Style';
+import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons/FontAwesome6';
 
 const Button = ({ onPress, title, textStyle, buttonStyle, imageSource }) => (
   <TouchableOpacity style={[styles.button, buttonStyle]} onPress={onPress}>
-    {imageSource ? (
-      <Image source={imageSource} style={[styles.buttonImage]} />
+    {FirstIconComponent && SecondIconComponent ? (
+      <View style={styles.iconContainer}>
+        <FirstIconComponent name={firstIconName} style={styles.buttonIcon} />
+        <SecondIconComponent name={secondIconName} style={styles.buttonIcon} />
+      </View>
     ) : (
       <Text style={[styles.buttonText, textStyle]}>{title}</Text>
     )}

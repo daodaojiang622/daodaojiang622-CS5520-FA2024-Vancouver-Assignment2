@@ -13,6 +13,7 @@ import { Colors, Padding, Font } from './Utils/Style';
 import { ThemeProvider, ThemeContext } from './Components/ThemeContext';
 import ScreenWrapper from './Components/ScreenWrapper';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import Button from './Components/Button';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -68,12 +69,21 @@ function BottomTabs() {
           component={ActivitiesScreenWrapper} 
           options={({ navigation }) => ({ 
             headerRight: () => (
-              <MaterialIcons 
-              name="add-circle-outline" 
-              onPress={() => 
-                navigation.navigate('AddActivity')} 
-              style={styles.addIcon} 
-            />
+              <Button
+                FirstIconComponent={FontAwesome6}
+                firstIconName="add"
+                SecondIconComponent={FontAwesome5}
+                secondIconName="running"
+                onPress={() => 
+                  navigation.navigate('AddActivity')} 
+                style={styles.addIcon} 
+              />
+            //   <MaterialIcons 
+            //   name="add-circle-outline" 
+            //   onPress={() => 
+            //     navigation.navigate('AddActivity')} 
+            //   style={styles.addIcon} 
+            // />
             ),
             headerTintColor: Colors.tertiary,
           })}  
