@@ -1,3 +1,5 @@
+import { FontAwesome5, MaterialIcons, Ionicons, FontAwesome6 } from '@expo/vector-icons';
+
 const Colors = {
     primary: '#454580',
     secondary: 'orange',
@@ -90,7 +92,7 @@ const Icon = {
     dietIconName: 'fastfood',
     settingsIconComponent: Ionicons,
     settingsIconName: 'settings-sharp',
-    addIconComponent: FontAwesome5,
+    addIconComponent: FontAwesome6,
     addIconName: 'add',
 };
 

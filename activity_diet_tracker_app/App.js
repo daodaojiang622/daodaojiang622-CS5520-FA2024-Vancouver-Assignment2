@@ -1,5 +1,5 @@
 import React, { useContext} from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -14,6 +14,7 @@ import { ThemeProvider, ThemeContext } from './Components/ThemeContext';
 import ScreenWrapper from './Components/ScreenWrapper';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Button from './Components/Button';
+import { FontAwesome5, FontAwesome6 } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -69,21 +70,20 @@ function BottomTabs() {
           component={ActivitiesScreenWrapper} 
           options={({ navigation }) => ({ 
             headerRight: () => (
-              <Button
-                FirstIconComponent={FontAwesome6}
-                firstIconName="add"
-                SecondIconComponent={FontAwesome5}
-                secondIconName="running"
-                onPress={() => 
-                  navigation.navigate('AddActivity')} 
-                style={styles.addIcon} 
+              <TouchableOpacity 
+              onPress={() => 
+                navigation.navigate('AddActivity')} 
+              style={styles.addIconContainer}
+              >
+              <FontAwesome6
+                name='add'
+                style={styles.addIcon}
               />
-            //   <MaterialIcons 
-            //   name="add-circle-outline" 
-            //   onPress={() => 
-            //     navigation.navigate('AddActivity')} 
-            //   style={styles.addIcon} 
-            // />
+              <FontAwesome5
+                name='running'
+                style={styles.addIcon}
+              />
+            </TouchableOpacity>
             ),
             headerTintColor: Colors.tertiary,
           })}  
@@ -93,12 +93,20 @@ function BottomTabs() {
           component={DietScreenWrapper} 
           options={({ navigation }) => ({ 
             headerRight: () => (
-            <MaterialIcons 
-              name="add-circle-outline" 
+              <TouchableOpacity 
               onPress={() => 
                 navigation.navigate('AddDiet')} 
-              style={styles.addIcon} 
-            />
+              style={styles.addIconContainer}
+              >
+              <FontAwesome6
+                name='add'
+                style={styles.addIcon}
+              />
+              <MaterialIcons
+                name='fastfood'
+                style={styles.addIcon}
+              />
+            </TouchableOpacity>
             ),
             headerTintColor: Colors.tertiary,
           })}  
@@ -166,7 +174,10 @@ function AppContent() {
 const styles = StyleSheet.create({
   addIcon: {
     color: Colors.tertiary,
+    fontSize: Font.sizeMedium,
+  },
+  addIconContainer: {
+    flexDirection: 'row',
     paddingRight: Padding.xxlarge,
-    fontSize: Font.SizeLarge,
   },
 });
