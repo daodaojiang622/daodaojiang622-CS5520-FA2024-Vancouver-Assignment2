@@ -86,8 +86,8 @@ const Position = {
 };
 
 const Icon = {
-    runningIconComponent: FontAwesome5,
-    runningIconName: 'running',
+    activityIconComponent: FontAwesome5,
+    activityIconName: 'running',
     dietIconComponent: MaterialIcons,
     dietIconName: 'fastfood',
     settingsIconComponent: Ionicons,

@@ -9,12 +9,9 @@ import AddActivityScreen from './Screens/AddActivityScreen';
 import ItemsList from './Components/ItemsList';
 import { DataProvider } from './Components/DataContext';
 import AddDietScreen from './Screens/AddDietScreen';
-import { Colors, Padding, Font } from './Utils/Style';
+import { Colors, Padding, Font, Icon, ContainerStyle } from './Utils/Style';
 import { ThemeProvider, ThemeContext } from './Components/ThemeContext';
 import ScreenWrapper from './Components/ScreenWrapper';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import Button from './Components/Button';
-import { FontAwesome5, FontAwesome6 } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -75,11 +72,11 @@ function BottomTabs() {
                 navigation.navigate('AddActivity')} 
               style={styles.addIconContainer}
               >
-              <FontAwesome6
+              <Icon.addIconComponent
                 name='add'
                 style={styles.addIcon}
               />
-              <FontAwesome5
+              <Icon.activityIconComponent
                 name='running'
                 style={styles.addIcon}
               />
@@ -98,11 +95,11 @@ function BottomTabs() {
                 navigation.navigate('AddDiet')} 
               style={styles.addIconContainer}
               >
-              <FontAwesome6
+              <Icon.addIconComponent
                 name='add'
                 style={styles.addIcon}
               />
-              <MaterialIcons
+              <Icon.dietIconComponent
                 name='fastfood'
                 style={styles.addIcon}
               />
@@ -177,7 +174,7 @@ const styles = StyleSheet.create({
     fontSize: Font.sizeMedium,
   },
   addIconContainer: {
-    flexDirection: 'row',
+    flexDirection: ContainerStyle.flexDirection,
     paddingRight: Padding.xxlarge,
   },
 });
