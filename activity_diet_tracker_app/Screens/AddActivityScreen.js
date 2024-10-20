@@ -8,6 +8,9 @@ import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/AddScreenButtons';
+import { addDoc, collection } from 'firebase/firestore';
+import { database, collectionName } from '../Firebase/firebaseSetup';
+import { writeToDB } from '../Firebase/firestoreHelper';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -16,6 +19,7 @@ export default function AddActivityScreen() {
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
   const { updateData } = useContext(DataContext);
+  const collectionName = 'activity';
   
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -28,7 +32,7 @@ export default function AddActivityScreen() {
     { label: 'Hiking', value: 'Hiking' },
   ]);
 
-  const validateAndSave = () => {
+  const validateAndSave = async () => {
 
     if (!value) {
       Alert.alert('Validation Error', 'Please select an activity.');
@@ -44,20 +48,19 @@ export default function AddActivityScreen() {
     }
     // Create the new activity object
     const newActivity = {
-      id: `a${Date.now()}`,
+      // id: `a${Date.now()}`,
       name: value,
       date: date.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' +
             date.toLocaleDateString('en-US', { month: 'short' }) + ' ' +
             date.toLocaleDateString('en-US', { day: '2-digit' }) + ' ' +
             date.getFullYear(),
-      otherData: `${duration} min`
+      otherData: `${duration} min`,
+      type: 'activity',
     };
-  
-    // Update the data state with the new activity
-    updateData(newActivity);
 
-    navigation.goBack();
-  
+      writeToDB(newActivity, collectionName);
+      updateData(newActivity);
+      navigation.goBack();
   };
 
   return (

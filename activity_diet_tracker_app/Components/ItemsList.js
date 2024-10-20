@@ -12,14 +12,15 @@ const ItemsList = ({ type }) => {
 
   console.log('ItemsList data:', data);
     // Filter data based on the type prop
-    const filteredData = data.filter(item => {
-      if (type === 'activity') {
-        return item.id.startsWith('a');
-      } else if (type === 'diet') {
-        return item.id.startsWith('d');
-      }
-      return false;
-    });
+    // const filteredData = data.filter(item => {
+    //   if (type === 'activity') {
+    //     return item.id.startsWith('a');
+    //   } else if (type === 'diet') {
+    //     return item.id.startsWith('d');
+    //   }
+    //   return false;
+    // });
+  const filteredData = data.filter(item => item.type === type);
 
   const renderItem = ({ item }) => {
 
@@ -30,7 +31,7 @@ const ItemsList = ({ type }) => {
       {(item.name === 'Running' || item.name === 'Weight Training') && parseInt(item.otherData) > 60 && (
           <SpecialIndicator />
         )}
-      {item.id.startsWith('d') && parseInt(item.otherData) > 800 && (
+      {item.type === 'diet' && parseInt(item.otherData) > 800 && (
           <SpecialIndicator />
       )}
 
