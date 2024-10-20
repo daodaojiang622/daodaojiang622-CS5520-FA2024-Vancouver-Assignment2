@@ -7,6 +7,8 @@ import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/AddScreenButtons';
+import { writeToDB } from '../Firebase/firestoreHelper';
+
 
 export default function AddActivityScreen() {
   const [description, setDescription] = useState('');
@@ -15,8 +17,9 @@ export default function AddActivityScreen() {
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
   const { updateData } = useContext(DataContext);
+  const collectionName = 'diet';
 
-  const validateAndSave = () => {
+  const validateAndSave = async () => {
     if (!description) {
       Alert.alert('Validation Error', 'Please enter a description.');
       return;
@@ -31,17 +34,16 @@ export default function AddActivityScreen() {
     }
   
     const newActivity = { 
-        id: `d${Date.now()}`, 
         name: description, 
         date: date.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' +
               date.toLocaleDateString('en-US', { month: 'short' }) + ' ' +
               date.toLocaleDateString('en-US', { day: '2-digit' }) + ' ' +
               date.getFullYear(),
-        otherData: calories
+        otherData: calories,
+        type: 'diet',
     };
-
+    writeToDB(newActivity, collectionName);
     updateData(newActivity);
-
     navigation.goBack();
   
   };

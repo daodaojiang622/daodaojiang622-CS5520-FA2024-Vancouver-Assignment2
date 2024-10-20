@@ -8,8 +8,6 @@ import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/AddScreenButtons';
-import { addDoc, collection } from 'firebase/firestore';
-import { database, collectionName } from '../Firebase/firebaseSetup';
 import { writeToDB } from '../Firebase/firestoreHelper';
 
 export default function AddActivityScreen() {
@@ -48,7 +46,6 @@ export default function AddActivityScreen() {
     }
     // Create the new activity object
     const newActivity = {
-      // id: `a${Date.now()}`,
       name: value,
       date: date.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' +
             date.toLocaleDateString('en-US', { month: 'short' }) + ' ' +
