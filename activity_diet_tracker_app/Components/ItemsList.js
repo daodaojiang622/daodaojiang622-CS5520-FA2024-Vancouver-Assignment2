@@ -1,25 +1,31 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { DataContext } from './DataContext';
 import { Colors, Padding, Font, BorderRadius, ContainerStyle, Width, Margin, Align } from '../Utils/Style';
 import { ThemeContext } from './ThemeContext';
 import SpecialIndicator from './SpecialIndicator';
 import DataItem from './DataItem';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { database } from '../Firebase/firebaseSetup';
 
 const ItemsList = ({ type }) => {
-  const { data } = useContext(DataContext);
   const { theme } = useContext(ThemeContext);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const collectionName = type === 'activity' ? 'activity' : 'diet';
+    const unsubscribe = onSnapshot(collection(database, collectionName), (querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        items.push({ ...doc.data(), id: doc.id });
+      });
+      setData(items);
+    });
+
+    return () => unsubscribe();
+  }, [type]);
 
   console.log('ItemsList data:', data);
-    // Filter data based on the type prop
-    // const filteredData = data.filter(item => {
-    //   if (type === 'activity') {
-    //     return item.id.startsWith('a');
-    //   } else if (type === 'diet') {
-    //     return item.id.startsWith('d');
-    //   }
-    //   return false;
-    // });
+
   const filteredData = data.filter(item => item.type === type);
 
   const renderItem = ({ item }) => {

@@ -4,7 +4,7 @@ import ItemsList from '../Components/ItemsList';
 
 const ActivitiesScreen = () => {
   return (
-    <ItemsList data={activities} />
+    <ItemsList data={activityEntries} />
   );
 };
 
