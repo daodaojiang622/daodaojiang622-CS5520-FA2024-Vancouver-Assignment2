@@ -33,9 +33,9 @@ const ItemsList = ({ type }) => {
   const renderItem = ({ item }) => {
     const handlePress = () => {
       if (item.type === 'activity') {
-        navigation.navigate('AddActivity');
+        navigation.navigate('AddActivity', { item });
       } else if (item.type === 'diet') {
-        navigation.navigate('AddDiet');
+        navigation.navigate('AddDiet', { item });
       }
     };
 

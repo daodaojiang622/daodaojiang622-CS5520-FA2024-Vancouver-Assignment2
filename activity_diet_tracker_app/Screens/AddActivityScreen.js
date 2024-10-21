@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Colors, Padding, Font, ContainerStyle, Width, Margin } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
 import { DataContext } from '../Components/DataContext';
@@ -18,6 +18,7 @@ export default function AddActivityScreen() {
   const { theme } = useContext(ThemeContext);
   const { updateData } = useContext(DataContext);
   const collectionName = 'activity';
+  const route = useRoute();
   
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -29,6 +30,15 @@ export default function AddActivityScreen() {
     { label: 'Cycling', value: 'Cycling' },
     { label: 'Hiking', value: 'Hiking' },
   ]);
+
+  useEffect(() => {
+    if (route.params?.item) {
+      const { item } = route.params;
+      setValue(item.name);
+      setDuration(item.otherData.replace(' min', ''));
+      setDate(new Date(item.date));
+    }
+  }, [route.params]);
 
   const validateAndSave = async () => {
 
