@@ -6,10 +6,12 @@ import SpecialIndicator from './SpecialIndicator';
 import DataItem from './DataItem';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { database } from '../Firebase/firebaseSetup';
+import { useNavigation } from '@react-navigation/native';
 
 const ItemsList = ({ type }) => {
   const { theme } = useContext(ThemeContext);
   const [data, setData] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const collectionName = type === 'activity' ? 'activity' : 'diet';
@@ -29,9 +31,16 @@ const ItemsList = ({ type }) => {
   const filteredData = data.filter(item => item.type === type);
 
   const renderItem = ({ item }) => {
+    const handlePress = () => {
+      if (item.type === 'activity') {
+        navigation.navigate('AddActivity');
+      } else if (item.type === 'diet') {
+        navigation.navigate('AddDiet');
+      }
+    };
 
     return (
-      <TouchableOpacity onPress={() => console.log('Item pressed:', item)}>
+      <TouchableOpacity onPress={handlePress}>
         <View style={[styles.activityContainer, {backgroundColor: theme.headerColor}]}>
           <Text style={styles.name}>{item.name}</Text>
 
