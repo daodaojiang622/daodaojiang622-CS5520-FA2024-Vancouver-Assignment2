@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { Colors, Padding, Font, BorderRadius, ContainerStyle, Width, Margin, Align } from '../Utils/Style';
 import { ThemeContext } from './ThemeContext';
 import SpecialIndicator from './SpecialIndicator';
@@ -31,19 +31,21 @@ const ItemsList = ({ type }) => {
   const renderItem = ({ item }) => {
 
     return (
-    <View style={[styles.activityContainer, {backgroundColor: theme.headerColor}]}>
-      <Text style={styles.name}>{item.name}</Text>
+      <TouchableOpacity onPress={() => console.log('Item pressed:', item)}>
+        <View style={[styles.activityContainer, {backgroundColor: theme.headerColor}]}>
+          <Text style={styles.name}>{item.name}</Text>
 
-      {(item.name === 'Running' || item.name === 'Weight Training') && parseInt(item.otherData) > 60 && (
-          <SpecialIndicator />
-        )}
-      {item.type === 'diet' && parseInt(item.otherData) > 800 && (
-          <SpecialIndicator />
-      )}
+          {(item.name === 'Running' || item.name === 'Weight Training') && parseInt(item.otherData) > 60 && (
+              <SpecialIndicator />
+            )}
+          {item.type === 'diet' && parseInt(item.otherData) > 800 && (
+              <SpecialIndicator />
+          )}
 
-      <DataItem data={item.date} />
-      <DataItem data={item.otherData} />
-    </View>
+          <DataItem data={item.date} />
+          <DataItem data={item.otherData} />
+        </View>
+    </TouchableOpacity>
   );} 
 
   return (
