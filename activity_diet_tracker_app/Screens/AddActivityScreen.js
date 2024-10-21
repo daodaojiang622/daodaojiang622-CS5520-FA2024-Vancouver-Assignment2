@@ -37,6 +37,7 @@ export default function AddActivityScreen() {
       setValue(item.name);
       setDuration(item.otherData.replace(' min', ''));
       setDate(new Date(item.date));
+      navigation.setOptions({ title: 'Edit' });
     }
   }, [route.params]);
 
