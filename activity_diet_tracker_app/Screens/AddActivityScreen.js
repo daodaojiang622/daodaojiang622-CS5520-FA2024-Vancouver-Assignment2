@@ -9,7 +9,6 @@ import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/AddScreenButtons';
 import { writeToDB } from '../Firebase/firestoreHelper';
-// import CheckBox from '@react-native-community/checkbox';
 import Checkbox from 'expo-checkbox';
 
 export default function AddActivityScreen() {
@@ -40,13 +39,12 @@ export default function AddActivityScreen() {
       setValue(item.name);
       setDuration(item.otherData.replace(' min', ''));
       setDate(new Date(item.date));
-      setIsSpecial(item.isSpecial);
+      setIsSpecial(item.isSpecial); // Set the initial state based on the item's isSpecial property
       navigation.setOptions({ title: 'Edit' });
     }
   }, [route.params]);
 
   const validateAndSave = async () => {
-
     if (!value) {
       Alert.alert('Validation Error', 'Please select an activity.');
       return;
@@ -59,11 +57,9 @@ export default function AddActivityScreen() {
       Alert.alert('Validation Error', 'Please select a date.');
       return;
     }
-    // Determine if the activity is special
-    const isActivitySpecial = (
-      value === 'Running' || value === 'Weight Training'
-    ) && parseInt(duration) > 60;
 
+    // Determine if the activity is special
+    const isActivitySpecial = (value === 'Running' || value === 'Weight Training') && parseInt(duration) > 60;
 
     // Create the new activity object
     const newActivity = {
@@ -77,9 +73,9 @@ export default function AddActivityScreen() {
       isSpecial: isActivitySpecial,
     };
 
-      writeToDB(newActivity, collectionName);
-      updateData(newActivity);
-      navigation.goBack();
+    await writeToDB(newActivity, collectionName);
+    updateData(newActivity);
+    navigation.goBack();
   };
 
   return (
@@ -101,7 +97,7 @@ export default function AddActivityScreen() {
         <FormInput label="Duration (min)" value={duration} onChangeText={setDuration} theme={theme} keyboardType="numeric" />
         <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
 
-        {route.params?.item && (
+        {route.params?.item?.isSpecial === true && (
           <View style={styles.checkboxContainer}>
             <Text style={[styles.label, { color: theme.headerColor }]}>This item is marked as special. Select the checkbox if you would like to approve it.</Text>
             <Checkbox
