@@ -9,6 +9,8 @@ import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/AddScreenButtons';
 import { writeToDB } from '../Firebase/firestoreHelper';
+// import CheckBox from '@react-native-community/checkbox';
+import Checkbox from 'expo-checkbox';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -19,6 +21,7 @@ export default function AddActivityScreen() {
   const { updateData } = useContext(DataContext);
   const collectionName = 'activity';
   const route = useRoute();
+  const [isSpecial, setIsSpecial] = useState(false);
   
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -89,6 +92,18 @@ export default function AddActivityScreen() {
 
         <FormInput label="Duration (min)" value={duration} onChangeText={setDuration} theme={theme} keyboardType="numeric" />
         <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
+
+        {route.params?.item && (
+          <View style={styles.checkboxContainer}>
+            <Text style={[styles.label, { color: theme.headerColor }]}>This item is marked as special. Select the checkbox if you would like to approve it.</Text>
+            <Checkbox
+              value={isSpecial}
+              onValueChange={setIsSpecial}
+              style={styles.checkbox}
+            />
+          </View>
+        )}
+
         <AddScreenButtons onSave={validateAndSave} onCancel={() => navigation.goBack()} theme={theme} />    
 
       </View>
@@ -112,7 +127,15 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: Font.sizeMedium,
-    marginBottom: Margin.small,
     color: Colors.primary,
+    width: "95%",
+  },
+  checkbox: {
+    marginRight: Margin.medium,
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: Margin.xxxxlarge,
   },
 });
