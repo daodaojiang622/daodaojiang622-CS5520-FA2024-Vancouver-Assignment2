@@ -44,12 +44,7 @@ const ItemsList = ({ type }) => {
         <View style={[styles.activityContainer, {backgroundColor: theme.headerColor}]}>
           <Text style={styles.name}>{item.name}</Text>
 
-          {(item.name === 'Running' || item.name === 'Weight Training') && parseInt(item.otherData) > 60 && (
-              <SpecialIndicator />
-            )}
-          {item.type === 'diet' && parseInt(item.otherData) > 800 && (
-              <SpecialIndicator />
-          )}
+          {item.isSpecial === true && <SpecialIndicator />}
 
           <DataItem data={item.date} />
           <DataItem data={item.otherData} />

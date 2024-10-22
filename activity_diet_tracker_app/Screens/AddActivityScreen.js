@@ -40,6 +40,7 @@ export default function AddActivityScreen() {
       setValue(item.name);
       setDuration(item.otherData.replace(' min', ''));
       setDate(new Date(item.date));
+      setIsSpecial(item.isSpecial);
       navigation.setOptions({ title: 'Edit' });
     }
   }, [route.params]);
@@ -58,6 +59,12 @@ export default function AddActivityScreen() {
       Alert.alert('Validation Error', 'Please select a date.');
       return;
     }
+    // Determine if the activity is special
+    const isActivitySpecial = (
+      value === 'Running' || value === 'Weight Training'
+    ) && parseInt(duration) > 60;
+
+
     // Create the new activity object
     const newActivity = {
       name: value,
@@ -67,6 +74,7 @@ export default function AddActivityScreen() {
             date.getFullYear(),
       otherData: `${duration} min`,
       type: 'activity',
+      isSpecial: isActivitySpecial,
     };
 
       writeToDB(newActivity, collectionName);
@@ -98,7 +106,12 @@ export default function AddActivityScreen() {
             <Text style={[styles.label, { color: theme.headerColor }]}>This item is marked as special. Select the checkbox if you would like to approve it.</Text>
             <Checkbox
               value={isSpecial}
-              onValueChange={setIsSpecial}
+              onValueChange={(newValue) => {
+                setIsSpecial(newValue);
+                if (newValue) {
+                  route.params.item.isSpecial = false;
+                }
+              }}
               style={styles.checkbox}
             />
           </View>
