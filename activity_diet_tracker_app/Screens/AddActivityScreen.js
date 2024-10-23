@@ -187,14 +187,9 @@ const styles = StyleSheet.create({
   container: {
     flex: ContainerStyle.flex,
     padding: Padding.xlarge,
-    backgroundColor: Colors.background,
   },
   dropdown: {
     marginBottom: Margin.large,
     width: Width.large,
-    backgroundColor: Colors.background,
-  },
-  dropdownContainer: {
-    backgroundColor: Colors.background,
   },
 });

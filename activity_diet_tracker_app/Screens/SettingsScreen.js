@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
   container: {
     flex: ContainerStyle.flex,
     padding: Padding.xlarge,
-    backgroundColor: Colors.background,
   },
   themeButtonText: {
     color: Colors.tertiary,
@@ -41,7 +40,6 @@ const styles = StyleSheet.create({
   },
   themeButton: {
     marginTop: Margin.xxxxlarge,
-    backgroundColor: Colors.primary,
     borderRadius: BorderRadius.medium,
     alignSelf: Align.center,
   },
