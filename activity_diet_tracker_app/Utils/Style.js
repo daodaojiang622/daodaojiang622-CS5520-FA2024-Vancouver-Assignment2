@@ -107,4 +107,4 @@ const Button = {
     size: 20,
 }
 
-export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align, Position, Icon, Opacity, Button };
+export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align, Position, Icon, Opacity, Button};

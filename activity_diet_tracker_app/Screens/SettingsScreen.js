@@ -10,9 +10,9 @@ export default function SettingsScreen() {
     <View style={[styles.container, { backgroundColor: theme.backgroundColor }]}>
       <Pressable
         style={({ pressed }) => [
-          styles.themeButton, // Static styles
+          styles.themeButton,
           { 
-            backgroundColor: theme.buttonColor, // Dynamic background color based on theme
+            backgroundColor: theme.buttonColor,
             opacity: pressed ? Opacity.partialOpaque : Opacity.opaque, // Dynamic opacity based on pressed state
           }
         ]}

@@ -73,11 +73,11 @@ function BottomTabs() {
               style={styles.addIconContainer}
               >
               <Icon.addIconComponent
-                name='add'
+                name={Icon.addIconName}
                 style={styles.addIcon}
               />
               <Icon.activityIconComponent
-                name='running'
+                name={Icon.activityIconName}
                 style={styles.addIcon}
               />
             </TouchableOpacity>
@@ -96,11 +96,11 @@ function BottomTabs() {
               style={styles.addIconContainer}
               >
               <Icon.addIconComponent
-                name='add'
+                name={Icon.addIconName}
                 style={styles.addIcon}
               />
               <Icon.dietIconComponent
-                name='fastfood'
+                name={Icon.dietIconName}
                 style={styles.addIcon}
               />
             </TouchableOpacity>

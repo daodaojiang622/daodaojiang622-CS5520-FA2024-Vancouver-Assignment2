@@ -17,11 +17,6 @@ export default function AddActivityScreen() {
   const [date, setDate] = useState(null);
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
-  const collectionName = 'activity';
-  const route = useRoute();
-  const [isSpecial, setIsSpecial] = useState(false);
-  const [isApproved, setIsApproved] = useState(false);
-
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
     { label: 'Walking', value: 'Walking' },
@@ -32,8 +27,10 @@ export default function AddActivityScreen() {
     { label: 'Cycling', value: 'Cycling' },
     { label: 'Hiking', value: 'Hiking' },
   ]);
-
-  // State for item ID
+  const collectionName = 'activity';
+  const route = useRoute();
+  const [isSpecial, setIsSpecial] = useState(false);
+  const [isApproved, setIsApproved] = useState(false);
   const [itemId, setItemId] = useState(null);
 
   useEffect(() => {
