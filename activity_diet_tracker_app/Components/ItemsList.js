@@ -44,7 +44,7 @@ const ItemsList = ({ type }) => {
         <View style={[styles.activityContainer, {backgroundColor: theme.headerColor}]}>
           <Text style={styles.name}>{item.name}</Text>
 
-          {item.isSpecial === true && <SpecialIndicator />}
+          {item.isSpecial === true && item.isApproved === false && <SpecialIndicator />}
 
           <DataItem data={item.date} />
           <DataItem data={item.otherData} />

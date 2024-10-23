@@ -21,6 +21,7 @@ export default function AddActivityScreen() {
   const collectionName = 'activity';
   const route = useRoute();
   const [isSpecial, setIsSpecial] = useState(false);
+  const [isApproved, setIsApproved] = useState(false);
 
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -44,6 +45,7 @@ export default function AddActivityScreen() {
       setDate(new Date(item.date));
       setItemId(item.id); 
       setIsSpecial(item.isSpecial);
+      setIsApproved(item.isApproved);
       navigation.setOptions({ title: 'Edit' });
     }
   }, [route.params]);
@@ -75,6 +77,7 @@ export default function AddActivityScreen() {
       otherData: `${duration} min`,
       type: 'activity',
       isSpecial: isSpecial,
+      isApproved: isApproved,
     };
 
    // If editing, update the existing document in Firestore
@@ -95,7 +98,7 @@ export default function AddActivityScreen() {
               await updateDB(itemId, updatedActivity, collectionName); // Call your update function
               navigation.goBack();
             } catch (error) {
-              Alert.alert('Error', 'Failed to save changes. Please try again.');
+              console.log('Error', 'Failed to save changes. Please try again.');
             }
           },
         },
@@ -109,7 +112,7 @@ export default function AddActivityScreen() {
       updateData(updatedActivity);
       navigation.goBack();
     } catch (error) {
-      Alert.alert('Error', 'Failed to save changes. Please try again.');
+      console.log('Error', 'Failed to save changes. Please try again.');
     }
   }
 };
@@ -137,8 +140,8 @@ export default function AddActivityScreen() {
           <View style={styles.checkboxContainer}>
             <Text style={[styles.label, { color: theme.headerColor }]}>This item is marked as special. Select the checkbox if you would like to approve it.</Text>
             <Checkbox
-              value={isSpecial}
-              onValueChange={setIsSpecial}
+              value={isApproved}
+              onValueChange={() => setIsApproved(prev => !prev)}  // Toggle isApproved state
               style={styles.checkbox}
             />
           </View>
