@@ -19,6 +19,7 @@ export default function AddActivityScreen() {
   const { updateData } = useContext(DataContext);
   const collectionName = 'activity';
   const route = useRoute();
+  const [isSpecial, setIsSpecial] = useState(false);
 
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -59,6 +60,9 @@ export default function AddActivityScreen() {
       return;
     }
 
+    // Determine if the activity is special
+    const isSpecial = (value === 'Running' || value === 'Weight Training') && parseFloat(duration) > 60;
+
     // Create the updated activity object
     const updatedActivity = {
       name: value,
@@ -68,6 +72,7 @@ export default function AddActivityScreen() {
             date.getFullYear(),
       otherData: `${duration} min`,
       type: 'activity',
+      isSpecial: isSpecial,
     };
 
     // If editing, update the existing document in Firestore
