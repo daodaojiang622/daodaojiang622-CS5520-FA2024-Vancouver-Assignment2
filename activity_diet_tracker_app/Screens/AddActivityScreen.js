@@ -9,6 +9,7 @@ import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/AddScreenButtons';
 import { writeToDB, updateDB } from '../Firebase/firestoreHelper'; 
+import Checkbox from 'expo-checkbox';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -42,6 +43,7 @@ export default function AddActivityScreen() {
       setDuration(item.otherData.replace(' min', ''));
       setDate(new Date(item.date));
       setItemId(item.id); 
+      setIsSpecial(item.isSpecial);
       navigation.setOptions({ title: 'Edit' });
     }
   }, [route.params]);
@@ -105,6 +107,23 @@ export default function AddActivityScreen() {
 
         <FormInput label="Duration (min)" value={duration} onChangeText={setDuration} theme={theme} keyboardType="numeric" />
         <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
+
+        {route.params?.item?.isSpecial === true && (
+          <View style={styles.checkboxContainer}>
+            <Text style={[styles.label, { color: theme.headerColor }]}>This item is marked as special. Select the checkbox if you would like to approve it.</Text>
+            <Checkbox
+              value={isSpecial}
+              onValueChange={(newValue) => {
+                setIsSpecial(newValue);
+                if (newValue) {
+                  route.params.item.isSpecial = false;
+                }
+              }}
+              style={styles.checkbox}
+            />
+          </View>
+        )}
+
         <AddScreenButtons onSave={validateAndSave} onCancel={() => navigation.goBack()} theme={theme} />    
 
       </View>
@@ -128,7 +147,15 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: Font.sizeMedium,
-    marginBottom: Margin.small,
     color: Colors.primary,
+    marginRight: Margin.medium,
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: Margin.medium,
+    position: 'absolute',
+    bottom: 230,
+    left: 40,
   },
 });
