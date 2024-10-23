@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
 import React, { useState, useContext, useEffect } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -8,8 +8,9 @@ import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/AddScreenButtons';
-import { writeToDB, updateDB } from '../Firebase/firestoreHelper'; 
+import { writeToDB, updateDB, deleteFromDB } from '../Firebase/firestoreHelper'; 
 import Checkbox from 'expo-checkbox';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -46,9 +47,45 @@ export default function AddActivityScreen() {
       setItemId(item.id); 
       setIsSpecial(item.isSpecial);
       setIsApproved(item.isApproved);
-      navigation.setOptions({ title: 'Edit' });
+      navigation.setOptions({
+        title: 'Edit',
+        headerRight: () => (
+          <TouchableOpacity 
+            onPress={confirmDelete}
+          >
+            <FontAwesome5 name="trash-alt" size={20} color="white" />
+          </TouchableOpacity>
+        ),
+      });
     }
   }, [route.params]);
+
+  const confirmDelete = () => {
+    Alert.alert(
+      'Confirm Delete',
+      'Are you sure you want to delete this item?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          onPress: async () => {
+            try {
+              await deleteFromDB(itemId, collectionName);
+              navigation.goBack();
+            } catch (error) {
+              console.log(error.message);
+              Alert.alert('Error', 'Failed to delete item. Please try again.');
+            }
+          },
+          style: 'destructive',
+        },
+      ],
+      { cancelable: false }
+    );
+  };
 
   const validateAndSave = async () => {
     if (!value) {
