@@ -22,17 +22,21 @@ export async function fetchDataFromDB(collectionName) {
     }
   }
 
-  export const updateDB = async (id, updatedData, collectionName) => {
+export const updateDB = async (id, updatedData, collectionName) => {
+  try {
     const docRef = doc(database, collectionName, id);
     await updateDoc(docRef, updatedData);
-  };
+  } catch (e) {
+    console.error('Error updating document: ', e);
+  }
+};
 
-  export const deleteFromDB = async (id, collectionName) => {
-    try {
-      const docRef = doc(database, collectionName, id);
-      await deleteDoc(docRef);
-      console.log('Document deleted with ID: ', id);
-    } catch (e) {
-      console.error('Error deleting document: ', e);
-    }
-  };
+export const deleteFromDB = async (id, collectionName) => {
+  try {
+  const docRef = doc(database, collectionName, id);
+    await deleteDoc(docRef);
+    console.log('Document deleted with ID: ', id);
+  } catch (e) {
+    console.error('Error deleting document: ', e);
+  }
+};

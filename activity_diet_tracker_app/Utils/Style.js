@@ -94,6 +94,8 @@ const Icon = {
     settingsIconName: 'settings-sharp',
     addIconComponent: FontAwesome6,
     addIconName: 'add',
+    deleteIconComponent: FontAwesome5,
+    deleteIconName: 'trash-alt',
 };
 
 export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align, Position, Icon };

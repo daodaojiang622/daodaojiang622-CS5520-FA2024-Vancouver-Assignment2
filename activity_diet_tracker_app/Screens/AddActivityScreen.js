@@ -2,14 +2,14 @@ import { View, Text, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard, Touc
 import React, { useState, useContext, useEffect } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Colors, Padding, Font, ContainerStyle, Width, Margin } from '../Utils/Style';
+import { Colors, Padding, Font, ContainerStyle, Width, Margin, Icon } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/AddScreenButtons';
 import { writeToDB, updateDB, deleteFromDB } from '../Firebase/firestoreHelper'; 
 import Checkbox from 'expo-checkbox';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import DeleteButton from '../Components/DeleteButton';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -39,6 +39,7 @@ export default function AddActivityScreen() {
   useEffect(() => {
     if (route.params?.item) {
       const { item } = route.params;
+      console.log("Route params item:", item);
       setValue(item.name);
       setDuration(item.otherData.replace(' min', ''));
       setDate(new Date(item.date));
@@ -48,11 +49,7 @@ export default function AddActivityScreen() {
       navigation.setOptions({
         title: 'Edit',
         headerRight: () => (
-          <TouchableOpacity 
-            onPress={confirmDelete}
-          >
-            <FontAwesome5 name="trash-alt" size={20} color="white" />
-          </TouchableOpacity>
+          <DeleteButton onPress={confirmDelete} />
         ),
       });
     }
@@ -70,6 +67,7 @@ export default function AddActivityScreen() {
         {
           text: 'Delete',
           onPress: async () => {
+            console.log("Attempting to delete item with ID:", itemId);
             try {
               await deleteFromDB(itemId, collectionName);
               navigation.goBack();
@@ -130,7 +128,7 @@ export default function AddActivityScreen() {
           text: 'OK',
           onPress: async () => {
             try {
-              await updateDB(itemId, updatedActivity, collectionName); // Call your update function
+              await updateDB(itemId, updatedActivity, collectionName);
               navigation.goBack();
             } catch (error) {
               console.log('Error', 'Failed to save changes. Please try again.');
