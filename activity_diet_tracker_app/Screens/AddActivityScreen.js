@@ -8,7 +8,6 @@ import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/AddScreenButtons';
 import { writeToDB, updateDB, deleteFromDB } from '../Firebase/firestoreHelper'; 
-import Checkbox from 'expo-checkbox';
 import DeleteButton from '../Components/DeleteButton';
 import SpecialItemApproval from '../Components/SpecialItemApproval';
 
@@ -197,18 +196,5 @@ const styles = StyleSheet.create({
   },
   dropdownContainer: {
     backgroundColor: Colors.background,
-  },
-  label: {
-    fontSize: Font.sizeMedium,
-    color: Colors.primary,
-    marginRight: Margin.medium,
-  },
-  checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: Margin.medium,
-    position: 'absolute',
-    bottom: 230,
-    left: 40,
   },
 });

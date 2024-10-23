@@ -121,9 +121,7 @@ function BottomTabs() {
 export default function App() {
   return (
     <ThemeProvider>
-      <DataProvider>
-        <AppContent />
-      </DataProvider>
+      <AppContent />
     </ThemeProvider>
   );
 }

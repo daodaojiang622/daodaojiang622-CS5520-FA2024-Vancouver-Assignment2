@@ -98,4 +98,9 @@ const Icon = {
     deleteIconName: 'trash-alt',
 };
 
-export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align, Position, Icon };
+const Opacity = {
+    opaque: 1,
+    partialOpaque: 0.7,
+};
+
+export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align, Position, Icon, Opacity };
