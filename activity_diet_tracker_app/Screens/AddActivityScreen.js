@@ -53,6 +53,7 @@ export default function AddActivityScreen() {
   }, [route.params]);
 
   const confirmDelete = () => {
+    const itemId = route.params.item.id;
     Alert.alert(
       'Confirm Delete',
       'Are you sure you want to delete this item?',
