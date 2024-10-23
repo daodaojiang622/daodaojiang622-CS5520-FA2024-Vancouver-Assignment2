@@ -1,42 +1,55 @@
-import React, { useContext } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { DataContext } from './DataContext';
+import React, { useContext, useState, useEffect } from 'react';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { Colors, Padding, Font, BorderRadius, ContainerStyle, Width, Margin, Align } from '../Utils/Style';
 import { ThemeContext } from './ThemeContext';
 import SpecialIndicator from './SpecialIndicator';
 import DataItem from './DataItem';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { database } from '../Firebase/firebaseSetup';
+import { useNavigation } from '@react-navigation/native';
 
 const ItemsList = ({ type }) => {
-  const { data } = useContext(DataContext);
   const { theme } = useContext(ThemeContext);
+  const [data, setData] = useState([]);
+  const navigation = useNavigation();
 
-  console.log('ItemsList data:', data);
-    // Filter data based on the type prop
-    const filteredData = data.filter(item => {
-      if (type === 'activity') {
-        return item.id.startsWith('a');
-      } else if (type === 'diet') {
-        return item.id.startsWith('d');
-      }
-      return false;
+  useEffect(() => {
+    const collectionName = type === 'activity' ? 'activity' : 'diet';
+    const unsubscribe = onSnapshot(collection(database, collectionName), (querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        items.push({ ...doc.data(), id: doc.id });
+      });
+      setData(items);
     });
 
+    return () => unsubscribe();
+  }, [type]);
+
+  console.log('ItemsList data:', data);
+
+  const filteredData = data.filter(item => item.type === type);
+
   const renderItem = ({ item }) => {
+    const handlePress = () => {
+      if (item.type === 'activity') {
+        navigation.navigate('AddActivity', { item, isEdit: true });
+      } else if (item.type === 'diet') {
+        navigation.navigate('AddDiet', { item, isEdit: true });
+      }
+    };
 
     return (
-    <View style={[styles.activityContainer, {backgroundColor: theme.headerColor}]}>
-      <Text style={styles.name}>{item.name}</Text>
+      <TouchableOpacity onPress={handlePress}>
+        <View style={[styles.activityContainer, {backgroundColor: theme.headerColor}]}>
+          <Text style={styles.name}>{item.name}</Text>
 
-      {(item.name === 'Running' || item.name === 'Weight Training') && parseInt(item.otherData) > 60 && (
-          <SpecialIndicator />
-        )}
-      {item.id.startsWith('d') && parseInt(item.otherData) > 800 && (
-          <SpecialIndicator />
-      )}
+          {item.isSpecial === true && item.isApproved === false && <SpecialIndicator />}
 
-      <DataItem data={item.date} />
-      <DataItem data={item.otherData} />
-    </View>
+          <DataItem data={item.date} />
+          <DataItem data={item.otherData} />
+        </View>
+    </TouchableOpacity>
   );} 
 
   return (

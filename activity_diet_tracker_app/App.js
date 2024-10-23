@@ -1,5 +1,5 @@
 import React, { useContext} from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -9,10 +9,9 @@ import AddActivityScreen from './Screens/AddActivityScreen';
 import ItemsList from './Components/ItemsList';
 import { DataProvider } from './Components/DataContext';
 import AddDietScreen from './Screens/AddDietScreen';
-import { Colors, Padding, Font } from './Utils/Style';
+import { Colors, Padding, Font, Icon, ContainerStyle } from './Utils/Style';
 import { ThemeProvider, ThemeContext } from './Components/ThemeContext';
 import ScreenWrapper from './Components/ScreenWrapper';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -68,12 +67,20 @@ function BottomTabs() {
           component={ActivitiesScreenWrapper} 
           options={({ navigation }) => ({ 
             headerRight: () => (
-              <MaterialIcons 
-              name="add-circle-outline" 
+              <TouchableOpacity 
               onPress={() => 
                 navigation.navigate('AddActivity')} 
-              style={styles.addIcon} 
-            />
+              style={styles.addIconContainer}
+              >
+              <Icon.addIconComponent
+                name='add'
+                style={styles.addIcon}
+              />
+              <Icon.activityIconComponent
+                name='running'
+                style={styles.addIcon}
+              />
+            </TouchableOpacity>
             ),
             headerTintColor: Colors.tertiary,
           })}  
@@ -83,12 +90,20 @@ function BottomTabs() {
           component={DietScreenWrapper} 
           options={({ navigation }) => ({ 
             headerRight: () => (
-            <MaterialIcons 
-              name="add-circle-outline" 
+              <TouchableOpacity 
               onPress={() => 
                 navigation.navigate('AddDiet')} 
-              style={styles.addIcon} 
-            />
+              style={styles.addIconContainer}
+              >
+              <Icon.addIconComponent
+                name='add'
+                style={styles.addIcon}
+              />
+              <Icon.dietIconComponent
+                name='fastfood'
+                style={styles.addIcon}
+              />
+            </TouchableOpacity>
             ),
             headerTintColor: Colors.tertiary,
           })}  
@@ -156,7 +171,10 @@ function AppContent() {
 const styles = StyleSheet.create({
   addIcon: {
     color: Colors.tertiary,
+    fontSize: Font.sizeMedium,
+  },
+  addIconContainer: {
+    flexDirection: ContainerStyle.flexDirection,
     paddingRight: Padding.xxlarge,
-    fontSize: Font.SizeLarge,
   },
 });

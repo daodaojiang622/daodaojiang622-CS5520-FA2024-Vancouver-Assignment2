@@ -1,3 +1,5 @@
+import { FontAwesome5, MaterialIcons, Ionicons, FontAwesome6 } from '@expo/vector-icons';
+
 const Colors = {
     primary: '#454580',
     secondary: 'orange',
@@ -83,4 +85,17 @@ const Position = {
     absolute: 'absolute',
 };
 
-export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align, Position };
+const Icon = {
+    activityIconComponent: FontAwesome5,
+    activityIconName: 'running',
+    dietIconComponent: MaterialIcons,
+    dietIconName: 'fastfood',
+    settingsIconComponent: Ionicons,
+    settingsIconName: 'settings-sharp',
+    addIconComponent: FontAwesome6,
+    addIconName: 'add',
+    deleteIconComponent: FontAwesome5,
+    deleteIconName: 'trash-alt',
+};
+
+export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align, Position, Icon };
