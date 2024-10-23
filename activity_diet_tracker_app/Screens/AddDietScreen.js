@@ -3,7 +3,6 @@ import React, { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {  Padding, ContainerStyle } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
-import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/AddScreenButtons';
@@ -16,7 +15,6 @@ export default function AddActivityScreen() {
   const [date, setDate] = useState(null);
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
-  const { updateData } = useContext(DataContext);
   const collectionName = 'diet';
 
   const validateAndSave = async () => {
@@ -43,7 +41,6 @@ export default function AddActivityScreen() {
         type: 'diet',
     };
     writeToDB(newActivity, collectionName);
-    updateData(newActivity);
     navigation.goBack();
   
   };

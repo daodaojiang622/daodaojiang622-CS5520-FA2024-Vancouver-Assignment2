@@ -4,7 +4,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Colors, Padding, Font, ContainerStyle, Width, Margin } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
-import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/AddScreenButtons';
@@ -18,7 +17,6 @@ export default function AddActivityScreen() {
   const [date, setDate] = useState(null);
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
-  const { updateData } = useContext(DataContext);
   const collectionName = 'activity';
   const route = useRoute();
   const [isSpecial, setIsSpecial] = useState(false);
@@ -146,7 +144,6 @@ export default function AddActivityScreen() {
     // If not editing, create a new entry (just in case)
     try {
       await writeToDB(updatedActivity, collectionName);
-      updateData(updatedActivity);
       navigation.goBack();
     } catch (error) {
       console.log('Error', 'Failed to save changes. Please try again.');
