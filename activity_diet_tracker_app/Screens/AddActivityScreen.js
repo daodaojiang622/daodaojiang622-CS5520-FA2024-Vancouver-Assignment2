@@ -8,8 +8,7 @@ import { DataContext } from '../Components/DataContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';
 import AddScreenButtons from '../Components/AddScreenButtons';
-import { writeToDB } from '../Firebase/firestoreHelper';
-import Checkbox from 'expo-checkbox';
+import { writeToDB, updateDB } from '../Firebase/firestoreHelper'; 
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -20,8 +19,7 @@ export default function AddActivityScreen() {
   const { updateData } = useContext(DataContext);
   const collectionName = 'activity';
   const route = useRoute();
-  const [isSpecial, setIsSpecial] = useState(false);
-  
+
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
     { label: 'Walking', value: 'Walking' },
@@ -33,13 +31,16 @@ export default function AddActivityScreen() {
     { label: 'Hiking', value: 'Hiking' },
   ]);
 
+  // State for item ID
+  const [itemId, setItemId] = useState(null);
+
   useEffect(() => {
     if (route.params?.item) {
       const { item } = route.params;
       setValue(item.name);
       setDuration(item.otherData.replace(' min', ''));
       setDate(new Date(item.date));
-      setIsSpecial(item.isSpecial); // Set the initial state based on the item's isSpecial property
+      setItemId(item.id); 
       navigation.setOptions({ title: 'Edit' });
     }
   }, [route.params]);
@@ -58,11 +59,8 @@ export default function AddActivityScreen() {
       return;
     }
 
-    // Determine if the activity is special
-    const isActivitySpecial = (value === 'Running' || value === 'Weight Training') && parseInt(duration) > 60;
-
-    // Create the new activity object
-    const newActivity = {
+    // Create the updated activity object
+    const updatedActivity = {
       name: value,
       date: date.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' +
             date.toLocaleDateString('en-US', { month: 'short' }) + ' ' +
@@ -70,11 +68,17 @@ export default function AddActivityScreen() {
             date.getFullYear(),
       otherData: `${duration} min`,
       type: 'activity',
-      isSpecial: isActivitySpecial,
     };
 
-    await writeToDB(newActivity, collectionName);
-    updateData(newActivity);
+    // If editing, update the existing document in Firestore
+    if (itemId) {
+      await updateDB(itemId, updatedActivity, collectionName); // Call your update function
+      updateData(updatedActivity); // Update the data context
+    } else {
+      // If not editing, create a new entry (just in case)
+      writeToDB(updatedActivity, collectionName);
+    }
+    
     navigation.goBack();
   };
 
@@ -96,23 +100,6 @@ export default function AddActivityScreen() {
 
         <FormInput label="Duration (min)" value={duration} onChangeText={setDuration} theme={theme} keyboardType="numeric" />
         <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
-
-        {route.params?.item?.isSpecial === true && (
-          <View style={styles.checkboxContainer}>
-            <Text style={[styles.label, { color: theme.headerColor }]}>This item is marked as special. Select the checkbox if you would like to approve it.</Text>
-            <Checkbox
-              value={isSpecial}
-              onValueChange={(newValue) => {
-                setIsSpecial(newValue);
-                if (newValue) {
-                  route.params.item.isSpecial = false;
-                }
-              }}
-              style={styles.checkbox}
-            />
-          </View>
-        )}
-
         <AddScreenButtons onSave={validateAndSave} onCancel={() => navigation.goBack()} theme={theme} />    
 
       </View>
@@ -136,15 +123,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: Font.sizeMedium,
+    marginBottom: Margin.small,
     color: Colors.primary,
-    width: "95%",
-  },
-  checkbox: {
-    marginRight: Margin.medium,
-  },
-  checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: Margin.xxxxlarge,
   },
 });

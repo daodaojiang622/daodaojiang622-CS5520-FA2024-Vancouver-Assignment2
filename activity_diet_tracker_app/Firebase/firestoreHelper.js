@@ -22,3 +22,8 @@ export async function fetchDataFromDB(collectionName) {
       return [];
     }
   }
+
+  export const updateDB = async (id, updatedData, collectionName) => {
+    const docRef = doc(database, collectionName, id);
+    await updateDoc(docRef, updatedData);
+  };
