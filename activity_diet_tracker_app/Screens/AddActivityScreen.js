@@ -77,17 +77,42 @@ export default function AddActivityScreen() {
       isSpecial: isSpecial,
     };
 
-    // If editing, update the existing document in Firestore
-    if (itemId) {
-      await updateDB(itemId, updatedActivity, collectionName); // Call your update function
-      updateData(updatedActivity); // Update the data context
-    } else {
-      // If not editing, create a new entry (just in case)
-      writeToDB(updatedActivity, collectionName);
+   // If editing, update the existing document in Firestore
+   if (itemId) {
+    // pop up a confirmation dialog for save, when confirm, update the doc
+    Alert.alert(
+      'Confirm Save',
+      'Are you sure you want to save the changes?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: async () => {
+            try {
+              await updateDB(itemId, updatedActivity, collectionName); // Call your update function
+              navigation.goBack();
+            } catch (error) {
+              Alert.alert('Error', 'Failed to save changes. Please try again.');
+            }
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  } else {
+    // If not editing, create a new entry (just in case)
+    try {
+      await writeToDB(updatedActivity, collectionName);
+      updateData(updatedActivity);
+      navigation.goBack();
+    } catch (error) {
+      Alert.alert('Error', 'Failed to save changes. Please try again.');
     }
-    
-    navigation.goBack();
-  };
+  }
+};
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -113,12 +138,7 @@ export default function AddActivityScreen() {
             <Text style={[styles.label, { color: theme.headerColor }]}>This item is marked as special. Select the checkbox if you would like to approve it.</Text>
             <Checkbox
               value={isSpecial}
-              onValueChange={(newValue) => {
-                setIsSpecial(newValue);
-                if (newValue) {
-                  route.params.item.isSpecial = false;
-                }
-              }}
+              onValueChange={setIsSpecial}
               style={styles.checkbox}
             />
           </View>
