@@ -10,6 +10,7 @@ import AddScreenButtons from '../Components/AddScreenButtons';
 import { writeToDB, updateDB, deleteFromDB } from '../Firebase/firestoreHelper'; 
 import Checkbox from 'expo-checkbox';
 import DeleteButton from '../Components/DeleteButton';
+import SpecialItemApproval from '../Components/SpecialItemApproval';
 
 export default function AddActivityScreen() {
   const [open, setOpen] = useState(false);
@@ -169,14 +170,11 @@ export default function AddActivityScreen() {
         <DateInput label="Date" date={date} setDate={setDate} theme={theme} />
 
         {route.params?.item?.isSpecial === true && (
-          <View style={styles.checkboxContainer}>
-            <Text style={[styles.label, { color: theme.headerColor }]}>This item is marked as special. Select the checkbox if you would like to approve it.</Text>
-            <Checkbox
-              value={isApproved}
-              onValueChange={() => setIsApproved(prev => !prev)}  // Toggle isApproved state
-              style={styles.checkbox}
-            />
-          </View>
+          <SpecialItemApproval
+            isApproved={isApproved}
+            setIsApproved={setIsApproved}
+            theme={theme}
+          />
         )}
 
         <AddScreenButtons onSave={validateAndSave} onCancel={() => navigation.goBack()} theme={theme} />    
