@@ -105,6 +105,8 @@ const Opacity = {
 
 const Button = {
     size: 20,
+    buttonMarginTop: 400,
+    buttonMarginHorizontal: 80,
 }
 
 export { Colors, Padding, Font, BorderWidth, BorderRadius, ContainerStyle, Width, Margin, Image, Align, Position, Icon, Opacity, Button};
