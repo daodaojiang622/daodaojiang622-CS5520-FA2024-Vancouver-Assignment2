@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useState, useContext, useEffect } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Colors, Padding, Font, ContainerStyle, Width, Margin, Icon } from '../Utils/Style';
+import { Padding, ContainerStyle, Width, Margin } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
 import DateInput from '../Components/DateInput';
 import FormInput from '../Components/FormInput';

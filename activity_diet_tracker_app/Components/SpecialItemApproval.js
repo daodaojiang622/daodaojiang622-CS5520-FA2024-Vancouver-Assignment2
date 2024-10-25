@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Checkbox from 'expo-checkbox';
-import { Margin, Padding, Position, ContainerStyle, Font, Width } from '../Utils/Style';
+import { Margin, Position, ContainerStyle, Font } from '../Utils/Style';
 
 const SpecialItemApproval = ({ isApproved, setIsApproved, theme }) => {
   return (
@@ -21,8 +21,6 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: ContainerStyle.flexDirection,
     alignItems: ContainerStyle.alignItems,
-    position: Position.absolute,
-    bottom: Margin.xxxxlarge,
     marginHorizontal: Margin.medium,
   },
   label: {
