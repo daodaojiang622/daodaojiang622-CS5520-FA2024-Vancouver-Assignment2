@@ -10,7 +10,6 @@ const Button = ({ onPress, title, textStyle, buttonStyle }) => {
     <Pressable
       style={({ pressed }) => [
         styles.button,
-        buttonStyle,
         { backgroundColor: theme.buttonColor },
         pressed && styles.buttonPressed
       ]}
