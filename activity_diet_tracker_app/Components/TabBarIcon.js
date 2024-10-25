@@ -1,21 +1,20 @@
 import React from 'react';
-import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';
-import { Font } from '../Utils/Style';
+import { Font, Icon } from '../Utils/Style';
 
 const TabBarIcon = ({ routeName, iconStyle }) => {
   let iconName;
   let IconComponent;
 
   if (routeName === 'Activities') {
-    IconComponent = FontAwesome5;
-    iconName = 'running';
+    IconComponent = Icon.activityIconComponent;
+    iconName = Icon.activityIconName;
   } else if (routeName === 'Diet') {
-    IconComponent = MaterialIcons;
-    iconName = 'fastfood';
+    IconComponent = Icon.dietIconComponent;
+    iconName = Icon.dietIconName;
   } else if (routeName === 'Settings') {
-    IconComponent = Ionicons;
-    iconName = 'settings-sharp';
+    IconComponent = Icon.settingsIconComponent;
+    iconName = Icon.settingsIconName;
   }
 
   return <IconComponent name={iconName} style={[styles.icon, iconStyle]} />;

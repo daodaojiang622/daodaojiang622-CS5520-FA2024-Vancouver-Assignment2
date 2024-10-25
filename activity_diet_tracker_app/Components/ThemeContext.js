@@ -14,6 +14,7 @@ export const ThemeProvider = ({ children }) => {
     backgroundColor: isGreenTheme ? Colors.background : Colors.toggleThemeBackground,
     textColor: isGreenTheme ? Colors.primary: Colors.toggleThemeHeader,
     headerColor: isGreenTheme ? Colors.primary : Colors.toggleThemeHeader,
+    buttonColor: isGreenTheme ? Colors.primary : Colors.toggleThemeHeader,
   };
 
   return (
