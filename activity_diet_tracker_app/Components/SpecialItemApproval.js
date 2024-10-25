@@ -7,7 +7,7 @@ const SpecialItemApproval = ({ isApproved, setIsApproved, theme }) => {
   return (
     <View style={styles.checkboxContainer}>
       <Text style={[styles.label, { color: theme.headerColor }]}>
-        This item is marked as special. Select the checkbox if you would like to approve it.
+        *This item is marked as special. Select the checkbox if you would like to approve it.
       </Text>
       <Checkbox
         value={isApproved}
@@ -24,8 +24,9 @@ const styles = StyleSheet.create({
     marginHorizontal: Margin.medium,
   },
   label: {
-    fontSize: Font.sizeSmall,
+    fontSize: Font.sizeMedium,
     marginRight: Margin.small,
+    fontWeight: Font.weight,
   },
 });
 
