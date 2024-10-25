@@ -3,15 +3,18 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SettingsScreen from './Screens/SettingsScreen';
+
 import TabBarIcon from './Components/TabBarIcon';
-import AddActivityScreen from './Screens/AddActivityScreen';
 import ItemsList from './Components/ItemsList';
-import { DataProvider } from './Components/DataContext';
+import ScreenWrapper from './Components/ScreenWrapper';
+
+import AddActivityScreen from './Screens/AddActivityScreen';
 import AddDietScreen from './Screens/AddDietScreen';
+import SettingsScreen from './Screens/SettingsScreen';
+
 import { Colors, Padding, Font, Icon, ContainerStyle } from './Utils/Style';
 import { ThemeProvider, ThemeContext } from './Components/ThemeContext';
-import ScreenWrapper from './Components/ScreenWrapper';
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

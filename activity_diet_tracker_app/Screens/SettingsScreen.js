@@ -13,7 +13,7 @@ export default function SettingsScreen() {
           styles.themeButton,
           { 
             backgroundColor: theme.buttonColor,
-            opacity: pressed ? Opacity.partialOpaque : Opacity.opaque, // Dynamic opacity based on pressed state
+            opacity: pressed ? Opacity.partialOpaque : Opacity.opaque, 
           }
         ]}
         onPress={toggleTheme}

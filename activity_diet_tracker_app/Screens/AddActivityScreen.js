@@ -4,11 +4,13 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Padding, ContainerStyle, Width, Margin } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
-import DateInput from '../Components/DateInput';
-import FormInput from '../Components/FormInput';
-import AddScreenButtons from '../Components/AddScreenButtons';
 import { writeToDB, updateDB, deleteFromDB } from '../Firebase/firestoreHelper'; 
-import DeleteButton from '../Components/DeleteButton';
+import DateInput from '../Components/Inputs/DateInput';
+import FormInput from '../Components/Inputs/FormInput';
+
+import AddScreenButtons from '../Components/PressableButtons/AddScreenButtons';
+import DeleteButton from '../Components/PressableButtons/DeleteButton';
+
 import SpecialItemApproval from '../Components/SpecialItemApproval';
 
 export default function AddActivityScreen() {
@@ -36,7 +38,6 @@ export default function AddActivityScreen() {
   useEffect(() => {
     if (route.params?.item) {
       const { item } = route.params;
-      console.log("Route params item:", item);
       setValue(item.name);
       setDuration(item.otherData.replace(' min', ''));
       setDate(new Date(item.date));

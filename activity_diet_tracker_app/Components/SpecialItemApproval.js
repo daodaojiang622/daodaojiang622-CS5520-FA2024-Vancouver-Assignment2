@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Checkbox from 'expo-checkbox';
-import { Margin, Position, ContainerStyle, Font } from '../Utils/Style';
+import { Margin, ContainerStyle, Font } from '../Utils/Style';
 
 const SpecialItemApproval = ({ isApproved, setIsApproved, theme }) => {
   return (

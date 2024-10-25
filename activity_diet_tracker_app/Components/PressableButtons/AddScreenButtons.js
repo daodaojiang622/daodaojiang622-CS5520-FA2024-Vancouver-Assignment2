@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import PressableButton from './PressableButton';
-import { Button, ContainerStyle } from '../Utils/Style';
+import PressableButton from './PressableButton.js';
+import { Button, ContainerStyle } from '../../Utils/Style';
 
 export default function AddScreenButtons({ onSave, onCancel, theme }) {
   return (

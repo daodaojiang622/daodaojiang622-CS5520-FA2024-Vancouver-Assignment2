@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
-import { Colors, Button, Icon, Opacity } from '../Utils/Style';
+import { Colors, Button, Icon, Opacity } from '../../Utils/Style';
 
 const DeleteButton = ({ onPress }) => {
   return (

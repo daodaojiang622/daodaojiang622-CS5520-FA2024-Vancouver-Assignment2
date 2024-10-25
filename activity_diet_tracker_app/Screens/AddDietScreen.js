@@ -3,12 +3,15 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import {  Padding, ContainerStyle } from '../Utils/Style';
 import { ThemeContext } from '../Components/ThemeContext';
-import DateInput from '../Components/DateInput';
-import FormInput from '../Components/FormInput';
-import AddScreenButtons from '../Components/AddScreenButtons';
 import { writeToDB, updateDB, deleteFromDB } from '../Firebase/firestoreHelper'; 
-import DeleteButton from '../Components/DeleteButton';
+
+import AddScreenButtons from '../Components/PressableButtons/AddScreenButtons';
+import DeleteButton from '../Components/PressableButtons/DeleteButton';
+
 import SpecialItemApproval from '../Components/SpecialItemApproval';
+
+import DateInput from '../Components/Inputs/DateInput';
+import FormInput from '../Components/Inputs/FormInput';
 
 
 export default function AddActivityScreen() {

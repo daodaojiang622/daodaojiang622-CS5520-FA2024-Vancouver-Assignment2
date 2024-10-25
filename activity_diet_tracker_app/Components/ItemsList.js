@@ -22,7 +22,7 @@ const ItemsList = ({ type }) => {
       });
       setData(items);
     });
-
+    console.log('Unsubscribed from collection:', collectionName);
     return () => unsubscribe();
   }, [type]);
 

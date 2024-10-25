@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Text, StyleSheet, Pressable } from 'react-native';
-import { ThemeContext } from './ThemeContext';
-import { Colors, Padding, Font, BorderRadius, Margin, ContainerStyle, Opacity } from '../Utils/Style';
+import { ThemeContext } from '../ThemeContext';
+import { Colors, Padding, Font, BorderRadius, Opacity } from '../../Utils/Style';
 
-const Button = ({ onPress, title, textStyle, buttonStyle }) => {
+const Button = ({ onPress, title, textStyle }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
