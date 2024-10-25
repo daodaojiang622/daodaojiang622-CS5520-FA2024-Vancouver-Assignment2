@@ -105,7 +105,7 @@ const Opacity = {
 
 const Button = {
     size: 20,
-    buttonMarginTop: 400,
+    buttonMarginTop: 300,
     buttonMarginHorizontal: 80,
 }
 
